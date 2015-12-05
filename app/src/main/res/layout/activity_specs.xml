@@ -15,25 +15,28 @@
         android:text="Nickname"
         android:id="@+id/textViewNickname"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Alignment"
         android:id="@+id/textViewAlignment"
-        android:layout_alignTop="@+id/textViewRace"
-        android:layout_toStartOf="@+id/textViewRace"
-        android:layout_marginEnd="50dp" />
+        android:layout_marginStart="47dp"
+        android:layout_alignTop="@+id/textViewNickname"
+        android:layout_toEndOf="@+id/textViewNickname"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Race"
         android:id="@+id/textViewRace"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/textViewLevel"
-        android:layout_marginEnd="54dp" />
+        android:layout_alignTop="@+id/textViewAlignment"
+        android:layout_toEndOf="@+id/textViewAlignment"
+        android:layout_marginStart="47dp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,67 +44,122 @@
         android:text="Level"
         android:id="@+id/textViewLevel"
         android:layout_alignTop="@+id/textViewNickname"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textStyle="bold" />
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:id="@+id/imageView"
-        android:src="@mipmap/heart"
-        android:layout_marginTop="22dp"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameLayout"
+        android:layout_marginTop="50dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageView"
+            android:src="@mipmap/heart"
+            android:layout_below="@+id/textViewNickname"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageView3"
+            android:src="@mipmap/shield"
+            android:layout_alignTop="@+id/imageView2"
+            android:layout_alignStart="@+id/textViewRace"
+            android:layout_marginStart="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="right|top" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageView2"
+            android:src="@mipmap/swords"
+            android:layout_alignTop="@+id/imageView"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal|top" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Attack"
+            android:id="@+id/textViewAttack"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/textViewHP"
+            android:layout_alignEnd="@+id/imageView2"
+            android:layout_alignStart="@+id/imageView2"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Armor"
+            android:id="@+id/textViewArmor"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/textViewAttack"
+            android:layout_alignEnd="@+id/imageView3"
+            android:layout_alignStart="@+id/imageView3"
+            android:layout_alignParentEnd="false"
+            android:layout_gravity="right|top"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="HP"
+            android:id="@+id/textViewHP"
+            android:layout_marginTop="25dp"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/imageView"
+            android:layout_alignStart="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView"
+            android:layout_gravity="left|top" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Agurato"
+        android:id="@+id/textNickname"
         android:layout_below="@+id/textViewNickname"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="19dp" />
+        android:layout_alignStart="@+id/textViewNickname"
+        android:textStyle="italic" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="HP"
-        android:id="@+id/textViewHP"
-        android:layout_marginTop="25dp"
-        android:gravity="center_horizontal"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
-
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:id="@+id/imageView2"
-        android:src="@mipmap/swords"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_centerHorizontal="true" />
+        android:text="Neutral"
+        android:id="@+id/textAlignment"
+        android:layout_below="@+id/textViewAlignment"
+        android:layout_alignStart="@+id/textViewAlignment"
+        android:textStyle="italic" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Attack"
-        android:id="@+id/textViewAttack"
-        android:gravity="center_horizontal"
-        android:layout_alignTop="@+id/textViewHP"
-        android:layout_alignEnd="@+id/imageView2"
-        android:layout_alignStart="@+id/imageView2" />
-
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:id="@+id/imageView3"
-        android:src="@mipmap/shield"
-        android:layout_alignTop="@+id/imageView2"
+        android:text="Elf"
+        android:id="@+id/textRace"
+        android:layout_below="@+id/textViewRace"
         android:layout_alignStart="@+id/textViewRace"
-        android:layout_marginStart="15dp" />
+        android:textStyle="italic" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Armor"
-        android:id="@+id/textViewArmor"
-        android:gravity="center_horizontal"
-        android:layout_alignTop="@+id/textViewAttack"
-        android:layout_alignEnd="@+id/imageView3"
-        android:layout_alignStart="@+id/imageView3" />
+        android:text="32"
+        android:id="@+id/textLevel"
+        android:layout_below="@+id/textViewLevel"
+        android:layout_alignStart="@+id/textViewLevel"
+        android:textStyle="italic" />
 
 </RelativeLayout>

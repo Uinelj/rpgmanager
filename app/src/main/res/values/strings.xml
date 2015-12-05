@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RPGmanager</string>
+    <string name="viewNickname">Nickname</string>
 </resources>
