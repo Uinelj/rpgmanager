@@ -12,5 +12,96 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Nickname"
+        android:id="@+id/textViewNickname"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alignment"
+        android:id="@+id/textViewAlignment"
+        android:layout_alignTop="@+id/textViewRace"
+        android:layout_toStartOf="@+id/textViewRace"
+        android:layout_marginEnd="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Race"
+        android:id="@+id/textViewRace"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/textViewLevel"
+        android:layout_marginEnd="54dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level"
+        android:id="@+id/textViewLevel"
+        android:layout_alignTop="@+id/textViewNickname"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageView"
+        android:src="@mipmap/heart"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/textViewNickname"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="19dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="HP"
+        android:id="@+id/textViewHP"
+        android:layout_marginTop="25dp"
+        android:gravity="center_horizontal"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageView2"
+        android:src="@mipmap/swords"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Attack"
+        android:id="@+id/textViewAttack"
+        android:gravity="center_horizontal"
+        android:layout_alignTop="@+id/textViewHP"
+        android:layout_alignEnd="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageView3"
+        android:src="@mipmap/shield"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignStart="@+id/textViewRace"
+        android:layout_marginStart="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Armor"
+        android:id="@+id/textViewArmor"
+        android:gravity="center_horizontal"
+        android:layout_alignTop="@+id/textViewAttack"
+        android:layout_alignEnd="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3" />
+
 </RelativeLayout>
