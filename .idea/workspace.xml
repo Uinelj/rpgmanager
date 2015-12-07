@@ -25,9 +25,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e5410925-22b8-45c1-bc11-6121fa9c7ce3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/crossed_swords.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/icons.xcf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/shield.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RPGmanager.iws" />
@@ -2076,7 +2073,13 @@
       <option name="project" value="LOCAL" />
       <updated>1449518465183</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Test commit ??">
+      <created>1449518708912</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1449518708912</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2133,7 +2136,8 @@
     <MESSAGE value="Ajout du menu (+ essai BaseActivity.java)" />
     <MESSAGE value="Menu sur toutes les classes qui ont &quot;extends DrawerActivity&quot;" />
     <MESSAGE value="Images added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Images added" />
+    <MESSAGE value="Test commit ??" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test commit ??" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
