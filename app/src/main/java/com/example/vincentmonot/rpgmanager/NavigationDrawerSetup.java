@@ -27,7 +27,7 @@ public class NavigationDrawerSetup {
 
     public NavigationDrawerSetup(Activity currentActivity) {
         this.currentActivity = currentActivity;
-        mDrawerList = (ListView) currentActivity.findViewById(R.id.nav_list);
+        //mDrawerList = (ListView) currentActivity.findViewById(R.id.nav_list);
         mDrawerLayout = (DrawerLayout) currentActivity.findViewById(R.id.drawer_layout);
     }
 

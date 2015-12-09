@@ -20,10 +20,16 @@ public class DiceActivity extends DrawerActivity {
         Intent intent;
         switch (position) {
             case 0:
+                intent = new Intent(this, CharacterSheetActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
                 break;
             case 1:
                 break;
             case 2:
+                intent = new Intent(this, OptionsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
                 break;
             default:
                 break;

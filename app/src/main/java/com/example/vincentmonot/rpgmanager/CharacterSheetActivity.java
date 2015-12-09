@@ -24,11 +24,13 @@ public class CharacterSheetActivity extends DrawerActivity {
                 break;
             case 1:
                 intent = new Intent(this, DiceActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case 2:
+                intent = new Intent(this, OptionsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
                 break;
             default:
                 break;
