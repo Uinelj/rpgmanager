@@ -20,11 +20,13 @@ public class OptionsActivity extends DrawerActivity {
         Intent intent;
         switch (position) {
             case 0:
+                mDrawerLayout.closeDrawer(mDrawerList);
                 intent = new Intent(this, CharacterSheetActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case 1:
+                mDrawerLayout.closeDrawer(mDrawerList);
                 intent = new Intent(this, DiceActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);

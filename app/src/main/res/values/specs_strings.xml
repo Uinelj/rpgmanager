@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menuName">Menu</string>
+    <string name="textNickname">Nickname</string>
+    <string name="textAlignment">Alignment</string>
+    <string name="textRace">Race</string>
+    <string name="textClass">Class</string>
+    <string name="healthPoints">Health points</string>
+    <string name="attackPoints">Attack points</string>
+    <string name="defensePoints">Defense points</string>
+    <string name="strength">STR</string>
+    <string name="dexterity">DEX</string>
+    <string name="constitution">CON</string>
+    <string name="intelligence">INT</string>
+    <string name="wisdom">WIS</string>
+    <string name="charisma">CHA</string>
+    <string name="base_value">10</string>
+</resources>

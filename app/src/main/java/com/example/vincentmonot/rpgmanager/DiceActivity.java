@@ -20,6 +20,7 @@ public class DiceActivity extends DrawerActivity {
         Intent intent;
         switch (position) {
             case 0:
+                mDrawerLayout.closeDrawer(mDrawerList);
                 intent = new Intent(this, CharacterSheetActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
@@ -27,6 +28,7 @@ public class DiceActivity extends DrawerActivity {
             case 1:
                 break;
             case 2:
+                mDrawerLayout.closeDrawer(mDrawerList);
                 intent = new Intent(this, OptionsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
