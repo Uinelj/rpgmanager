@@ -15,15 +15,16 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1">
+        android:id="@+id/linearLayout1"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
             android:gravity="center_horizontal"
-            android:id="@+id/layoutNickname">
+            android:id="@+id/layoutNickname"
+            android:layout_weight="1">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -44,9 +45,9 @@
             android:orientation="vertical"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
             android:gravity="center_horizontal"
-            android:id="@+id/layoutAlignment">
+            android:id="@+id/layoutAlignment"
+            android:layout_weight="1">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -68,9 +69,9 @@
             android:orientation="vertical"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
             android:gravity="center_horizontal"
-            android:id="@+id/layoutRace">
+            android:id="@+id/layoutRace"
+            android:layout_weight="1">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,7 +94,8 @@
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:id="@+id/layoutClass">
+            android:id="@+id/layoutClass"
+            android:layout_weight="1">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,31 +121,118 @@
         android:layout_below="@+id/linearLayout1"
         android:layout_alignParentStart="true"
         android:id="@+id/linearLayout2"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:baselineAligned="false">
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:id="@+id/imageViewHP"
-            android:src="@drawable/heart"
-            android:layout_gravity="top"
-            android:contentDescription="@string/healthPoints"/>
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/layoutHealth"
+            android:gravity="center_horizontal">
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:id="@+id/imageViewAttack"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/swords"
-            android:contentDescription="@string/attackPoints"/>
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/imageViewHP"
+                android:src="@drawable/heart"
+                android:layout_gravity="top"
+                android:contentDescription="@string/healthPoints"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                />
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:id="@+id/imageViewShield"
-            android:layout_gravity="end|top"
-            android:src="@drawable/shield"
-            android:contentDescription="@string/defensePoints"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/imageViewHP"
+                android:layout_alignRight="@+id/imageViewHP"
+                android:gravity="center_horizontal"
+                android:layout_centerInParent="true"
+                android:id="@+id/layoutHealthValues">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/base_value"
+                    android:id="@+id/textCurrentHealth"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/base_health"
+                    android:id="@+id/textMaxHealth"
+                    android:textColor="#000000"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/layoutDamage"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/imageViewAttack"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/swords"
+                android:contentDescription="@string/attackPoints"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/base_dmg"
+                android:id="@+id/textDmg"
+                android:layout_centerInParent="true"
+                android:layout_alignLeft="@+id/imageViewAttack"
+                android:layout_alignRight="@+id/imageViewAttack"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/layoutDefense"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/imageViewShield"
+                android:layout_gravity="end|top"
+                android:src="@drawable/shield"
+                android:contentDescription="@string/defensePoints"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/base_value"
+                android:id="@+id/textDefense"
+                android:layout_centerInParent="true"
+                android:layout_alignLeft="@+id/imageViewShield"
+                android:layout_alignRight="@+id/imageViewShield"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
     </LinearLayout>
 
     <!-- Third LinearLayout (STR, DEX, CON, INT, WIS, CHA) -->
@@ -154,13 +243,40 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearLayout2"
         android:id="@+id/linearLayout3"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/layoutStrength">
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutLevel"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/level"
+                android:id="@+id/textViewLevel"
+                android:textStyle="bold"
+                android:textColor="#780202"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/base_level"
+                android:id="@+id/textLevel"
+                android:textColor="#c76d6d"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutStrength"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -181,14 +297,17 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/layoutDexterity">
+            android:id="@+id/layoutDexterity"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dexterity"
                 android:id="@+id/textViewDexterity"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="#000000"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -201,14 +320,17 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/layoutConstitution">
+            android:id="@+id/layoutConstitution"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/constitution"
                 android:id="@+id/textViewConstitution"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="#000000"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -222,14 +344,17 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/layoutIntelligence">
+            android:id="@+id/layoutIntelligence"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/intelligence"
                 android:id="@+id/textViewIntelligence"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="#000000"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -242,14 +367,17 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/layoutWisdom">
+            android:id="@+id/layoutWisdom"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/wisdom"
                 android:id="@+id/textViewWisdom"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="#000000"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -262,14 +390,17 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/layoutCharisma">
+            android:id="@+id/layoutCharisma"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/charisma"
                 android:id="@+id/textViewCharisma"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="#000000"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -277,6 +408,17 @@
                 android:text="@string/base_value"
                 android:id="@+id/textCharisma"/>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_marginTop="10dp"
+        android:id="@+id/linearLayout4">
     </LinearLayout>
 
 </RelativeLayout>

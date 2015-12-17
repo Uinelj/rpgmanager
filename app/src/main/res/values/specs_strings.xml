@@ -8,6 +8,7 @@
     <string name="healthPoints">Health points</string>
     <string name="attackPoints">Attack points</string>
     <string name="defensePoints">Defense points</string>
+    <string name="level">LVL</string>
     <string name="strength">STR</string>
     <string name="dexterity">DEX</string>
     <string name="constitution">CON</string>
@@ -15,4 +16,7 @@
     <string name="wisdom">WIS</string>
     <string name="charisma">CHA</string>
     <string name="base_value">10</string>
+    <string name="base_level">10(50)</string>
+    <string name="base_health">/10</string>
+    <string name="base_dmg">d6</string>
 </resources>

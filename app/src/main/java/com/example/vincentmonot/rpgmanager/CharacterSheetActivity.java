@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 public class CharacterSheetActivity extends DrawerActivity {
 
+    private final static String TAG = "CharacterSheetActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,40 +65,37 @@ public class CharacterSheetActivity extends DrawerActivity {
         if (networkInfo != null && networkInfo.isConnected()) {
             Request req = new Request("http://uinelj.eu/misc/rpgm/action.php?a=get&id=foo", this);
             if(req.getValue("success").equals("true")) {
-                Log.d("CharacterSheetActivity", "name="+req.getValue("name"));
                 ((TextView) findViewById(R.id.textNickname)).setText(req.getValue("name"));
-                Log.d("CharacterSheetActivity", "align="+req.getValue("align"));
                 ((TextView) findViewById(R.id.textAlignment)).setText(req.getValue("align"));
-                Log.d("CharacterSheetActivity", "race="+req.getValue("race"));
                 ((TextView) findViewById(R.id.textRace)).setText(req.getValue("race"));
-                Log.d("CharacterSheetActivity", "class="+req.getValue("class"));
                 ((TextView) findViewById(R.id.textClass)).setText(req.getValue("class"));
 
+                ((TextView) findViewById(R.id.textCurrentHealth)).setText(req.getValue("hp"));
+                String maxHealth = "/"+req.getValue("maxhp");
+                ((TextView) findViewById(R.id.textMaxHealth)).setText(maxHealth);
+                ((TextView) findViewById(R.id.textDmg)).setText(req.getValue("dmg"));
+                ((TextView) findViewById(R.id.textDefense)).setText(req.getValue("armour"));
 
-                Log.d("CharacterSheetActivity", "str="+req.getValue("str"));
+                String level = req.getValue("lvl");
+                String xp = req.getValue("xp");
+                if(Integer.valueOf(xp) < 10) {
+                    xp = "0"+xp;
+                }
+                level += "("+xp+")";
+                ((TextView) findViewById(R.id.textLevel)).setText(level);
                 ((TextView) findViewById(R.id.textStrength)).setText(req.getValue("str"));
-                Log.d("CharacterSheetActivity", "dex="+req.getValue("dex"));
                 ((TextView) findViewById(R.id.textDexterity)).setText(req.getValue("dex"));
-                Log.d("CharacterSheetActivity", "con="+req.getValue("con"));
                 ((TextView) findViewById(R.id.textConstitution)).setText(req.getValue("con"));
-                Log.d("CharacterSheetActivity", "intel="+req.getValue("intel"));
                 ((TextView) findViewById(R.id.textIntelligence)).setText(req.getValue("intel"));
-                Log.d("CharacterSheetActivity", "wis="+req.getValue("wis"));
                 ((TextView) findViewById(R.id.textWisdom)).setText(req.getValue("wis"));
-                Log.d("CharacterSheetActivity", "cha="+req.getValue("cha"));
                 ((TextView) findViewById(R.id.textCharisma)).setText(req.getValue("cha"));
-
-                /*
-                TextView nick = (TextView) findViewById(R.id.textNickname);
-                nick.setText(req.getValue("name"));
-                */
             }
             else {
-                Log.d("CharacterSheetActivity", req.getValue("msg")+" ("+req.getValue("id")+")");
+                Log.d(TAG, req.getValue("msg")+" ("+req.getValue("id")+")");
                 Toast.makeText(CharacterSheetActivity.this, req.getValue("msg")+" ("+req.getValue("id")+")", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Log.d("CharacterSheetActivity", "LE NETWORK IL MARCHE PAS");
+            Log.d(TAG, "LE NETWORK IL MARCHE PAS");
         }
     }
 }

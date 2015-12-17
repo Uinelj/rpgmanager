@@ -1,7 +1,11 @@
 package com.example.vincentmonot.rpgmanager;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,6 +34,9 @@ public class DrawerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_sheet);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(Color.parseColor("#B79A00"));
+        }
 
         switch(this.getClass().getSimpleName()) {
             case "CharacterSheetActivity":
@@ -47,6 +54,7 @@ public class DrawerActivity extends AppCompatActivity {
         }
         if(getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#E5C100")));
         }
     }
 
