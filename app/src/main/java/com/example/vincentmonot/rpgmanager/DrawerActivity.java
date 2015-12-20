@@ -58,15 +58,18 @@ public class DrawerActivity extends AppCompatActivity {
         }
     }
 
-    /*
+
     @Override
     protected void onResume() {
         super.onResume();
-        if(mDrawerLayout.isDrawerOpen(mDrawerList)) {
-            mDrawerLayout.closeDrawer(mDrawerList);
+        mDrawerLayout.closeDrawers();
+        /*
+        if((! mDrawerLayout.isDrawerOpen(mDrawerList)) && (! getClass().getSimpleName().equals("CharacterSheetActivity"))) {
+            mDrawerLayout.openDrawer(mDrawerList);
         }
+        */
     }
-    */
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

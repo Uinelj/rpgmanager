@@ -10,4 +10,12 @@
     android:id="@+id/content_layout"
     tools:context="com.example.vincentmonot.rpgmanager.DiceActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/diceImage"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/d20"
+        android:contentDescription="dice"/>
 </RelativeLayout>

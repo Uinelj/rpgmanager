@@ -11,7 +11,7 @@ public class OptionsActivity extends DrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dice);
+        setContentView(R.layout.activity_options);
     }
 
     @Override
@@ -20,18 +20,19 @@ public class OptionsActivity extends DrawerActivity {
         Intent intent;
         switch (position) {
             case 0:
-                mDrawerLayout.closeDrawer(mDrawerList);
+                //mDrawerLayout.closeDrawer(mDrawerList);
                 intent = new Intent(this, CharacterSheetActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case 1:
-                mDrawerLayout.closeDrawer(mDrawerList);
+                //mDrawerLayout.closeDrawer(mDrawerList);
                 intent = new Intent(this, DiceActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case 2:
+                mDrawerLayout.closeDrawers();
                 break;
             default:
                 break;
