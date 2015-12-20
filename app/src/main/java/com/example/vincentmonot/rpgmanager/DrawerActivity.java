@@ -1,7 +1,5 @@
 package com.example.vincentmonot.rpgmanager;
 
-import android.annotation.TargetApi;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,15 +10,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-/**
- * Created by Vincent Monot on 06/12/2015.
- */
+
 public class DrawerActivity extends AppCompatActivity {
 
     String title = "";
@@ -85,17 +82,13 @@ public class DrawerActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-
+        return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     @Override
     public void setContentView(final int layoutResID) {
-        DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_drawer, null);
+        //DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_drawer, null);
+        DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_drawer, (ViewGroup) getCurrentFocus());
         RelativeLayout actContent = (RelativeLayout) fullLayout.findViewById(R.id.drawer_content);
 
         mDrawerLayout = (DrawerLayout) fullLayout.findViewById(R.id.drawer_layout);
@@ -103,7 +96,7 @@ public class DrawerActivity extends AppCompatActivity {
 
         navOptions = getResources().getStringArray(R.array.menuItems);
 
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, navOptions));
+        mDrawerList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, navOptions));
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

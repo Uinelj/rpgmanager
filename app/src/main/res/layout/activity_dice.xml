@@ -8,14 +8,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:id="@+id/content_layout"
-    tools:context="com.example.vincentmonot.rpgmanager.DiceActivity">
+    tools:context="com.example.vincentmonot.rpgmanager.DiceActivity"
+                android:background="#e85252">
 
-    <ImageView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/diceImage"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/d20"
-        android:contentDescription="dice"/>
+        android:background="#e85252"
+        android:contentDescription="@string/image_button_desc"/>
 </RelativeLayout>

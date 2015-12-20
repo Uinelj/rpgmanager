@@ -5,4 +5,14 @@
         <item>Roll the dice !</item>
         <item>Options</item>
     </string-array>
+    <string-array name="dices_array">
+        <item>4 faces</item>
+        <item>6 faces</item>
+        <item>8 faces</item>
+        <item>10 faces</item>
+        <item>12 faces</item>
+        <item>20 faces</item>
+        <item>24 faces</item>
+        <item>30 faces</item>
+    </string-array>
 </resources>

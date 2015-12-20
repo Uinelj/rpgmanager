@@ -3,16 +3,11 @@ package com.example.vincentmonot.rpgmanager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 
-/**
- * Created by Vincent Monot on 20/12/2015.
- */
 public class ShakeEventListener implements SensorEventListener {
 
-
     /** Minimum movement force to consider. */
-    private static final int MIN_FORCE = 10;
+    private static final int MIN_FORCE = 20;
 
     /**
      * Minimum times in a shake gesture that the direction of movement needs to
@@ -21,7 +16,7 @@ public class ShakeEventListener implements SensorEventListener {
     private static final int MIN_DIRECTION_CHANGE = 3;
 
     /** Maximum pause between movements. */
-    private static final int MAX_PAUSE_BETHWEEN_DIRECTION_CHANGE = 200;
+    private static final int MAX_PAUSE_BETWEEN_DIRECTION_CHANGE = 200;
 
     /** Maximum allowed time for shake gesture. */
     private static final int MAX_TOTAL_DURATION_OF_SHAKE = 400;
@@ -85,7 +80,7 @@ public class ShakeEventListener implements SensorEventListener {
 
             // check if the last movement was not long ago
             long lastChangeWasAgo = now - mLastDirectionChangeTime;
-            if (lastChangeWasAgo < MAX_PAUSE_BETHWEEN_DIRECTION_CHANGE) {
+            if (lastChangeWasAgo < MAX_PAUSE_BETWEEN_DIRECTION_CHANGE) {
 
                 // store movement data
                 mLastDirectionChangeTime = now;
