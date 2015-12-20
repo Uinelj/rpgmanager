@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="75dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:id="@+id/layoutNickname"
@@ -43,7 +43,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="75dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:id="@+id/layoutAlignment"
@@ -67,7 +67,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="75dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:id="@+id/layoutRace"
@@ -91,7 +91,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="75dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:id="@+id/layoutClass"
@@ -111,6 +111,7 @@
                 android:id="@+id/textClass"
                 android:textStyle="italic"/>
         </LinearLayout>
+
     </LinearLayout>
 
     <!-- Second LinearLayout (HP, Attack, Defense) -->
@@ -126,7 +127,7 @@
 
         <RelativeLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/layoutHealth"
@@ -172,7 +173,7 @@
 
         <RelativeLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/layoutDamage"
@@ -204,7 +205,7 @@
 
         <RelativeLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/layoutDefense"
@@ -247,8 +248,8 @@
         android:baselineAligned="false">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/layoutLevel"
             android:layout_weight="1"
@@ -271,8 +272,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/layoutStrength"
             android:layout_weight="1"
@@ -294,8 +295,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/layoutDexterity"
             android:layout_weight="1"
@@ -317,8 +318,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/layoutConstitution"
             android:layout_weight="1"
@@ -341,8 +342,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/layoutIntelligence"
             android:layout_weight="1"
@@ -364,8 +365,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/layoutWisdom"
             android:layout_weight="1"
@@ -387,8 +388,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/layoutCharisma"
             android:layout_weight="1"
@@ -408,6 +409,7 @@
                 android:text="@string/base_value"
                 android:id="@+id/textCharisma"/>
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
