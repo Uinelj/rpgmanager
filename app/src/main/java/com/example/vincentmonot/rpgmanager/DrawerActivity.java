@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class DrawerActivity extends AppCompatActivity {
 
-    private static final String TAG = "DrawerActivity";
+    protected final String TAG = this.getClass().getSimpleName();
 
     String title = "";
     public String[] navOptions;
@@ -60,12 +60,15 @@ public class DrawerActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(title);
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#E5C100")));
         }
+        checkLocale();
+
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume is called");
         mDrawerLayout.closeDrawers();
         checkLocale();
         /*
@@ -139,16 +142,19 @@ public class DrawerActivity extends AppCompatActivity {
         //mDrawerLayout.closeDrawer(mDrawerList);
     }
 
-    private void checkLocale() {
+    protected void checkLocale() {
         SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
-        String lang = settings.getString("locale", "en_US");
-        Log.d(TAG, "SHARED_PREFERENCES Locale="+lang);
+        String localePref = settings.getString("locale", "en_US");
+        String[] split = localePref.split("_");
+        Log.d(TAG, "SHARED_PREFERENCES Locale="+localePref);
 
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        //Log.d(TAG, "CONFIG " + config.locale.getLanguage());
+        //if(! localePref.equals(Locale.getDefault().toString())) {
+            Locale locale = new Locale(split[0], split[1]);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getApplicationContext().getResources().updateConfiguration(config, getApplicationContext().getResources().getDisplayMetrics());
+            //Log.d(TAG, "CONFIG " + config.locale.getLanguage());
+        //}
     }
 }

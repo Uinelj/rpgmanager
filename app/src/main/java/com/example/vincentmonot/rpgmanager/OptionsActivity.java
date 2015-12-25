@@ -28,6 +28,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class OptionsActivity extends DrawerActivity {
@@ -54,9 +55,9 @@ public class OptionsActivity extends DrawerActivity {
                 try {
                     URL url = new URL(urlString);
                     HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-                    urlc.setRequestMethod("HEAD");
-                    urlc.setConnectTimeout(5 * 1000);
-                    urlc.setReadTimeout(5 * 1000);
+                    //urlc.setRequestMethod("HEAD");
+                    //urlc.setConnectTimeout(5 * 1000);
+                    //urlc.setReadTimeout(5 * 1000);
                     urlc.connect();
 
                     if(urlc.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -68,6 +69,15 @@ public class OptionsActivity extends DrawerActivity {
                     Log.d(TAG, "Unreachable destination");
                     Toast.makeText(OptionsActivity.this, "Unreachable destination", Toast.LENGTH_SHORT).show();
                 }
+
+                if(! urlString.endsWith("/")) {
+                    urlString += "/";
+                }
+                Log.d(TAG, "Saving URL "+urlString);
+                SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("url", urlString);
+                editor.apply();
             }
         });
 
@@ -89,17 +99,19 @@ public class OptionsActivity extends DrawerActivity {
 
                 Log.d(TAG, "SELECTED lang=" + lang);
 
+                // Updates the preferences
                 SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("locale", lang);
                 editor.apply();
 
+                // Updates the locale and configuration
                 Locale locale = new Locale(lang);
                 Locale.setDefault(locale);
                 Configuration config = new Configuration();
                 config.locale = locale;
-                //Log.d(TAG, "CONFIG " + config.locale.getLanguage());
-                onConfigurationChanged(config);
+                getApplicationContext().getResources().updateConfiguration(config,
+                        getApplicationContext().getResources().getDisplayMetrics());
             }
 
             @Override
@@ -132,53 +144,6 @@ public class OptionsActivity extends DrawerActivity {
 
     /*
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        File cfgFile = new File(getFilesDir(), "config.ini");
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(cfgFile));
-            String line;
-            String lang = "en_US";
-
-            while((line = br.readLine()) != null) {
-                String[] split = line.split("::");
-                switch(split[0]) {
-                    case "url":
-                        ((EditText) findViewById(R.id.editTextURL)).setText(split[1]);
-                        break;
-                    case "language":
-                        Log.d(TAG, Locale.getDefault().toString());
-                        switch (split[1]) {
-                            case "English":
-                                lang = "en_US";
-                                ((Spinner) findViewById(R.id.spinnerLanguages)).setSelection(0);
-                                break;
-                            case "Français":
-                                lang = "fr_FR";
-                                ((Spinner) findViewById(R.id.spinnerLanguages)).setSelection(1);
-                                break;
-                            default:
-                                lang = "en_US";
-                                ((Spinner) findViewById(R.id.spinnerLanguages)).setSelection(0);
-                                break;
-                        }
-
-
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    */
-    /*
-    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         //getBaseContext().getResources().updateConfiguration(newConfig, getBaseContext().getResources().getDisplayMetrics());
@@ -204,6 +169,12 @@ public class OptionsActivity extends DrawerActivity {
                 startActivity(intent);
                 break;
             case 2:
+                super.checkLocale();
+                SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+                Map<String, ?> keys = settings.getAll();
+                for(Map.Entry<String, ?> entry : keys.entrySet()) {
+                    Log.d(TAG, "Values = "+entry.getKey()+":"+entry.getValue());
+                }
                 mDrawerLayout.closeDrawers();
                 break;
             default:

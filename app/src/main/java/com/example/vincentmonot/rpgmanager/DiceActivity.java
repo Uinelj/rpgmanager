@@ -125,6 +125,7 @@ public class DiceActivity extends DrawerActivity {
                 startActivity(intent);
                 break;
             case 1:
+                super.checkLocale();
                 mDrawerLayout.closeDrawers();
                 break;
             case 2:

@@ -2,6 +2,7 @@ package com.example.vincentmonot.rpgmanager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 public class CharacterSheetActivity extends DrawerActivity {
 
     private final static String TAG = "CharacterSheetActivity";
+    String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class CharacterSheetActivity extends DrawerActivity {
         Intent intent;
         switch (position) {
             case 0:
+                super.checkLocale();
                 mDrawerLayout.closeDrawers();
                 refreshData();
                 break;
@@ -63,8 +66,14 @@ public class CharacterSheetActivity extends DrawerActivity {
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+        url = settings.getString("url", "http://uinelj.eu/misc/rpgm/");
+
         if (networkInfo != null && networkInfo.isConnected()) {
-            Request req = new Request("http://uinelj.eu/misc/rpgm/action.php?a=get&id=foo", this);
+            String fullUrl = url+"action.php?a=get&id=foo";
+            Log.d(TAG, "LOADING URL "+fullUrl);
+            Request req = new Request(url+"action.php?a=get&id=foo", this);
             if(req.getValue("success").equals("true")) {
                 ((TextView) findViewById(R.id.textNickname)).setText(req.getValue("name"));
                 ((TextView) findViewById(R.id.textAlignment)).setText(req.getValue("align"));
