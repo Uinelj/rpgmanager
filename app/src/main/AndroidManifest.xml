@@ -12,18 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".CharacterSheetActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:configChanges="locale">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DrawerActivity" />
+        <activity android:name=".DrawerActivity"
+                  android:configChanges="locale" />
         <activity android:name=".DiceActivity"
-                  android:launchMode="singleTask" />
+                  android:launchMode="singleTask"
+                  android:configChanges="locale" />
         <activity android:name=".OptionsActivity"
-                  android:launchMode="singleTask" />
+                  android:launchMode="singleTask"
+                  android:configChanges="locale" />
     </application>
 
 </manifest>

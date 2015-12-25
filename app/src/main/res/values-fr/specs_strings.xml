@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menuName">Menu</string>
+    <string name="textNickname">Pseudonyme</string>
+    <string name="textAlignment">Alignement</string>
+    <string name="textRace">Race</string>
+    <string name="textClass">Classe</string>
+    <string name="healthPoints">Points de vie</string>
+    <string name="attackPoints">Dégâts d\'attaque</string>
+    <string name="defensePoints">Défense</string>
+    <string name="level">NIV</string>
+    <string name="strength">FOR</string>
+    <string name="dexterity">DEX</string>
+    <string name="constitution">CON</string>
+    <string name="intelligence">INT</string>
+    <string name="wisdom">SAG</string>
+    <string name="charisma">CHA</string>
+    <string name="base_value">10</string>
+    <string name="base_level">10(50)</string>
+    <string name="base_health">/10</string>
+    <string name="base_dmg">d6</string>
+</resources>

@@ -1,5 +1,7 @@
 package com.example.vincentmonot.rpgmanager;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +20,12 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 
 public class DrawerActivity extends AppCompatActivity {
+
+    private static final String TAG = "DrawerActivity";
 
     String title = "";
     public String[] navOptions;
@@ -60,6 +67,7 @@ public class DrawerActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mDrawerLayout.closeDrawers();
+        checkLocale();
         /*
         if((! mDrawerLayout.isDrawerOpen(mDrawerList)) && (! getClass().getSimpleName().equals("CharacterSheetActivity"))) {
             mDrawerLayout.openDrawer(mDrawerList);
@@ -94,7 +102,7 @@ public class DrawerActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) fullLayout.findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) fullLayout.findViewById(R.id.nav_drawer);
 
-        navOptions = getResources().getStringArray(R.array.menuItems);
+        navOptions = getResources().getStringArray(R.array.menu_items);
 
         mDrawerList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, navOptions));
 
@@ -129,5 +137,18 @@ public class DrawerActivity extends AppCompatActivity {
     protected void onItemSelection(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(DrawerActivity.this, navOptions[position], Toast.LENGTH_SHORT).show();
         //mDrawerLayout.closeDrawer(mDrawerList);
+    }
+
+    private void checkLocale() {
+        SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+        String lang = settings.getString("locale", "en_US");
+        Log.d(TAG, "SHARED_PREFERENCES Locale="+lang);
+
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        //Log.d(TAG, "CONFIG " + config.locale.getLanguage());
     }
 }
