@@ -37,11 +37,11 @@ public class CharacterSheetActivity extends DrawerActivity {
 
     @Override
     protected void onItemSelection(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this, "In CharacterSheetActivity : "+navOptions[position], Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "In CharacterSheetActivity : "+navOptions[position], Toast.LENGTH_SHORT).show();
         Intent intent;
         switch (position) {
             case 0:
-                super.checkLocale();
+                super.updateLocale();
                 mDrawerLayout.closeDrawers();
                 refreshData();
                 break;
@@ -67,45 +67,51 @@ public class CharacterSheetActivity extends DrawerActivity {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-        SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         url = settings.getString("url", "http://uinelj.eu/misc/rpgm/");
 
         if (networkInfo != null && networkInfo.isConnected()) {
             String fullUrl = url+"action.php?a=get&id=foo";
             Log.d(TAG, "LOADING URL "+fullUrl);
             Request req = new Request(url+"action.php?a=get&id=foo", this);
-            if(req.getValue("success").equals("true")) {
-                ((TextView) findViewById(R.id.textNickname)).setText(req.getValue("name"));
-                ((TextView) findViewById(R.id.textAlignment)).setText(req.getValue("align"));
-                ((TextView) findViewById(R.id.textRace)).setText(req.getValue("race"));
-                ((TextView) findViewById(R.id.textClass)).setText(req.getValue("class"));
+            if(req.getResult().containsKey("success")) {
+                if (req.getValue("success").equals("true")) {
+                    ((TextView) findViewById(R.id.textNickname)).setText(req.getValue("name"));
+                    ((TextView) findViewById(R.id.textAlignment)).setText(req.getValue("align"));
+                    ((TextView) findViewById(R.id.textRace)).setText(req.getValue("race"));
+                    ((TextView) findViewById(R.id.textClass)).setText(req.getValue("class"));
 
-                ((TextView) findViewById(R.id.textCurrentHealth)).setText(req.getValue("hp"));
-                String maxHealth = "/"+req.getValue("maxhp");
-                ((TextView) findViewById(R.id.textMaxHealth)).setText(maxHealth);
-                ((TextView) findViewById(R.id.textDmg)).setText(req.getValue("dmg"));
-                ((TextView) findViewById(R.id.textDefense)).setText(req.getValue("armour"));
+                    ((TextView) findViewById(R.id.textCurrentHealth)).setText(req.getValue("hp"));
+                    String maxHealth = "/" + req.getValue("maxhp");
+                    ((TextView) findViewById(R.id.textMaxHealth)).setText(maxHealth);
+                    ((TextView) findViewById(R.id.textDmg)).setText(req.getValue("dmg"));
+                    ((TextView) findViewById(R.id.textDefense)).setText(req.getValue("armour"));
 
-                String level = req.getValue("lvl");
-                String xp = req.getValue("xp");
-                if(Integer.valueOf(xp) < 10) {
-                    xp = "0"+xp;
+                    String level = req.getValue("lvl");
+                    String xp = req.getValue("xp");
+                    if (Integer.valueOf(xp) < 10) {
+                        xp = "0" + xp;
+                    }
+                    level += "(" + xp + ")";
+                    ((TextView) findViewById(R.id.textLevel)).setText(level);
+                    ((TextView) findViewById(R.id.textStrength)).setText(req.getValue("str"));
+                    ((TextView) findViewById(R.id.textDexterity)).setText(req.getValue("dex"));
+                    ((TextView) findViewById(R.id.textConstitution)).setText(req.getValue("con"));
+                    ((TextView) findViewById(R.id.textIntelligence)).setText(req.getValue("intel"));
+                    ((TextView) findViewById(R.id.textWisdom)).setText(req.getValue("wis"));
+                    ((TextView) findViewById(R.id.textCharisma)).setText(req.getValue("cha"));
+                } else {
+                    Log.d(TAG, req.getValue("msg") + " (" + req.getValue("id") + ")");
+                    Toast.makeText(CharacterSheetActivity.this, req.getValue("msg") + " (" + req.getValue("id") + ")", Toast.LENGTH_SHORT).show();
                 }
-                level += "("+xp+")";
-                ((TextView) findViewById(R.id.textLevel)).setText(level);
-                ((TextView) findViewById(R.id.textStrength)).setText(req.getValue("str"));
-                ((TextView) findViewById(R.id.textDexterity)).setText(req.getValue("dex"));
-                ((TextView) findViewById(R.id.textConstitution)).setText(req.getValue("con"));
-                ((TextView) findViewById(R.id.textIntelligence)).setText(req.getValue("intel"));
-                ((TextView) findViewById(R.id.textWisdom)).setText(req.getValue("wis"));
-                ((TextView) findViewById(R.id.textCharisma)).setText(req.getValue("cha"));
             }
             else {
-                Log.d(TAG, req.getValue("msg")+" ("+req.getValue("id")+")");
-                Toast.makeText(CharacterSheetActivity.this, req.getValue("msg")+" ("+req.getValue("id")+")", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Unable to retrieve data");
+                Toast.makeText(CharacterSheetActivity.this, "Unable to retrieve data", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Log.d(TAG, "LE NETWORK IL MARCHE PAS");
+            Log.d(TAG, "Network isn't working");
+            Toast.makeText(CharacterSheetActivity.this, "Network isn't working", Toast.LENGTH_SHORT).show();
         }
     }
 }

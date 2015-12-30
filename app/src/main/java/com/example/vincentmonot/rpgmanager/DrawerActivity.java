@@ -37,30 +37,31 @@ public class DrawerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_character_sheet);
+        setContentView(R.layout.activity_drawer);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.parseColor("#B79A00"));
         }
-
+        /*
         switch(this.getClass().getSimpleName()) {
             case "CharacterSheetActivity":
-                title = "Character Sheet";
+                title = getResources().getStringArray(R.array.menu_items)[0];
                 break;
             case "DiceActivity":
-                title = "Roll the dice";
+                title = getResources().getStringArray(R.array.menu_items)[1];
                 break;
             case "OptionsActivity":
-                title = "Options";
+                title = getResources().getStringArray(R.array.menu_items)[2];
                 break;
             default:
                 title = "RPG Manager";
                 break;
         }
+        */
         if(getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(title);
+            //getSupportActionBar().setTitle(title);
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#E5C100")));
         }
-        checkLocale();
+        updateLocale();
 
     }
 
@@ -69,8 +70,31 @@ public class DrawerActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume is called");
-        mDrawerLayout.closeDrawers();
-        checkLocale();
+        //mDrawerLayout.closeDrawers();
+        updateLocale();
+
+
+        navOptions = getResources().getStringArray(R.array.menu_items);
+
+        mDrawerList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, navOptions));
+        switch(this.getClass().getSimpleName()) {
+            case "CharacterSheetActivity":
+                title = navOptions[0];
+                break;
+            case "DiceActivity":
+                title = navOptions[1];
+                break;
+            case "OptionsActivity":
+                title = navOptions[2];
+                break;
+            default:
+                title = "RPG Manager";
+                break;
+        }
+
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
         /*
         if((! mDrawerLayout.isDrawerOpen(mDrawerList)) && (! getClass().getSimpleName().equals("CharacterSheetActivity"))) {
             mDrawerLayout.openDrawer(mDrawerList);
@@ -139,22 +163,20 @@ public class DrawerActivity extends AppCompatActivity {
 
     protected void onItemSelection(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(DrawerActivity.this, navOptions[position], Toast.LENGTH_SHORT).show();
-        //mDrawerLayout.closeDrawer(mDrawerList);
     }
 
-    protected void checkLocale() {
-        SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+    protected void updateLocale() {
+        SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         String localePref = settings.getString("locale", "en_US");
         String[] split = localePref.split("_");
-        Log.d(TAG, "SHARED_PREFERENCES Locale="+localePref);
+        Log.d(TAG, "SHARED_PREFERENCES Locale=" + localePref);
 
-        //if(! localePref.equals(Locale.getDefault().toString())) {
-            Locale locale = new Locale(split[0], split[1]);
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getApplicationContext().getResources().updateConfiguration(config, getApplicationContext().getResources().getDisplayMetrics());
-            //Log.d(TAG, "CONFIG " + config.locale.getLanguage());
-        //}
+        Locale locale = new Locale(split[0]);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getApplicationContext().getResources().updateConfiguration(config, getApplicationContext().getResources().getDisplayMetrics());
+
+        Log.d(TAG, "Changed Locale=" + getResources().getConfiguration().locale);
     }
 }

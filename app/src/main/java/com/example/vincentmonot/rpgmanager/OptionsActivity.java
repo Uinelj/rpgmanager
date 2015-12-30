@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,26 +14,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 public class OptionsActivity extends DrawerActivity {
 
     private static final String TAG = "OptionsActivity";
-    Button testCon;
+    Button testCon, loadLocale;
     Spinner langSelect;
 
     @Override
@@ -48,8 +37,8 @@ public class OptionsActivity extends DrawerActivity {
             public void onClick(View v) {
                 String urlString = ((EditText) findViewById(R.id.editTextURL)).getText().toString();
 
-                if(! (urlString.startsWith("http://") || urlString.startsWith("https://"))) {
-                    urlString = "http://"+urlString;
+                if (!(urlString.startsWith("http://") || urlString.startsWith("https://"))) {
+                    urlString = "http://" + urlString;
                 }
 
                 try {
@@ -60,7 +49,7 @@ public class OptionsActivity extends DrawerActivity {
                     //urlc.setReadTimeout(5 * 1000);
                     urlc.connect();
 
-                    if(urlc.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    if (urlc.getResponseCode() == HttpURLConnection.HTTP_OK) {
                         Log.d(TAG, "Reachable destination");
                         Toast.makeText(OptionsActivity.this, "Reachable destination", Toast.LENGTH_SHORT).show();
                     }
@@ -70,14 +59,25 @@ public class OptionsActivity extends DrawerActivity {
                     Toast.makeText(OptionsActivity.this, "Unreachable destination", Toast.LENGTH_SHORT).show();
                 }
 
-                if(! urlString.endsWith("/")) {
+                if (!urlString.endsWith("/")) {
                     urlString += "/";
                 }
-                Log.d(TAG, "Saving URL "+urlString);
-                SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+                Log.d(TAG, "Saving URL " + urlString);
+                SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("url", urlString);
                 editor.apply();
+            }
+        });
+
+        loadLocale = (Button) findViewById(R.id.buttonLocale);
+        loadLocale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = OptionsActivity.this.getIntent();
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                OptionsActivity.this.finish();
+                startActivity(intent);
             }
         });
 
@@ -100,18 +100,12 @@ public class OptionsActivity extends DrawerActivity {
                 Log.d(TAG, "SELECTED lang=" + lang);
 
                 // Updates the preferences
-                SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("locale", lang);
                 editor.apply();
 
-                // Updates the locale and configuration
-                Locale locale = new Locale(lang);
-                Locale.setDefault(locale);
-                Configuration config = new Configuration();
-                config.locale = locale;
-                getApplicationContext().getResources().updateConfiguration(config,
-                        getApplicationContext().getResources().getDisplayMetrics());
+                OptionsActivity.super.updateLocale();
             }
 
             @Override
@@ -127,7 +121,7 @@ public class OptionsActivity extends DrawerActivity {
         super.onResume();
 
         // Put the selected locale as default on spinner
-        SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         String lang = settings.getString("locale", "en_US");
         String language;
         switch(lang) {
@@ -153,7 +147,7 @@ public class OptionsActivity extends DrawerActivity {
     */
     @Override
     protected void onItemSelection(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this, "In DiceActivity : " + navOptions[position], Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "In DiceActivity : " + navOptions[position], Toast.LENGTH_SHORT).show();
         Intent intent;
         switch (position) {
             case 0:
@@ -169,8 +163,8 @@ public class OptionsActivity extends DrawerActivity {
                 startActivity(intent);
                 break;
             case 2:
-                super.checkLocale();
-                SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+                super.updateLocale();
+                SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
                 Map<String, ?> keys = settings.getAll();
                 for(Map.Entry<String, ?> entry : keys.entrySet()) {
                     Log.d(TAG, "Values = "+entry.getKey()+":"+entry.getValue());

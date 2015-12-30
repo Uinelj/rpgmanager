@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -91,6 +92,12 @@ public class DiceActivity extends DrawerActivity {
                                     diceImage.setImageResource(R.drawable.d30);
                                     break;
                             }
+
+                            // Save the dice in preferences when new one selected
+                            SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = settings.edit();
+                            editor.putInt("diceFaces", DiceActivity.this.diceValue);
+                            editor.apply();
                         }
                     });
                 AlertDialog dialog = builder.create();
@@ -105,6 +112,50 @@ public class DiceActivity extends DrawerActivity {
         mSensorManager.registerListener(mSensorListener,
                 mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_UI);
+
+        // Displays the last dice clicked
+        SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        diceValue = settings.getInt("diceFaces", 20);
+
+        switch(diceValue) {
+            case 4:
+                DiceActivity.this.diceValue = 4;
+                diceImage.setImageResource(R.drawable.d4);
+                break;
+            case 6:
+                DiceActivity.this.diceValue = 6;
+                diceImage.setImageResource(R.drawable.d6);
+                break;
+            case 8:
+                DiceActivity.this.diceValue = 8;
+                diceImage.setImageResource(R.drawable.d8);
+                break;
+            case 10:
+                DiceActivity.this.diceValue = 10;
+                diceImage.setImageResource(R.drawable.d10);
+                break;
+            case 12:
+                DiceActivity.this.diceValue = 12;
+                diceImage.setImageResource(R.drawable.d12);
+                break;
+            case 20:
+                DiceActivity.this.diceValue = 20;
+                diceImage.setImageResource(R.drawable.d20);
+                break;
+            case 24:
+                DiceActivity.this.diceValue = 24;
+                diceImage.setImageResource(R.drawable.d24);
+                break;
+            case 30:
+                DiceActivity.this.diceValue = 30;
+                diceImage.setImageResource(R.drawable.d30);
+                break;
+            default:
+                DiceActivity.this.diceValue = 20;
+                diceImage.setImageResource(R.drawable.d20);
+                break;
+        }
+
     }
 
     @Override
@@ -115,7 +166,7 @@ public class DiceActivity extends DrawerActivity {
 
     @Override
     protected void onItemSelection(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this, "In DiceActivity : " + navOptions[position], Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "In DiceActivity : " + navOptions[position], Toast.LENGTH_SHORT).show();
         Intent intent;
         switch (position) {
             case 0:
@@ -125,7 +176,7 @@ public class DiceActivity extends DrawerActivity {
                 startActivity(intent);
                 break;
             case 1:
-                super.checkLocale();
+                super.updateLocale();
                 mDrawerLayout.closeDrawers();
                 break;
             case 2:

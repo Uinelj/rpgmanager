@@ -26,6 +26,7 @@ public class Request {
     Context context;
 
     public Request(String request, Context context){
+        this.context = context;
         this.request = request;
         jsonAnswer = makeHttpRequest();
         populateResult();
@@ -33,7 +34,6 @@ public class Request {
             setJsonAnswer(result.get("user"));
             populateResult();
         }
-        this.context = context;
         //System.out.println(result.);
     }
 
