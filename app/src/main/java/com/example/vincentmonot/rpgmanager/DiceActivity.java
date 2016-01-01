@@ -40,7 +40,7 @@ public class DiceActivity extends DrawerActivity {
 
             public void onShake() {
                 int number = r.nextInt(diceValue)+1;
-                Toast message = Toast.makeText(DiceActivity.this, ""+number, Toast.LENGTH_LONG);
+                Toast message = Toast.makeText(DiceActivity.this, String.valueOf(number), Toast.LENGTH_LONG);
                 message.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
                 ((TextView) ((ViewGroup) message.getView()).getChildAt(0)).setTextSize(40);
                 message.show();
@@ -166,7 +166,6 @@ public class DiceActivity extends DrawerActivity {
 
     @Override
     protected void onItemSelection(AdapterView<?> parent, View view, int position, long id) {
-        //Toast.makeText(this, "In DiceActivity : " + navOptions[position], Toast.LENGTH_SHORT).show();
         Intent intent;
         switch (position) {
             case 0:

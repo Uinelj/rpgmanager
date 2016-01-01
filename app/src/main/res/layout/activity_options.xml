@@ -11,59 +11,81 @@
                 tools:context="com.example.vincentmonot.rpgmanager.DiceActivity">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:id="@+id/urlLayout">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextURL"
+            android:hint="@string/enter_URL"
+            android:layout_weight="1"
+            android:inputType="textUri"/>
 
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editTextURL"
-                android:hint="@string/enter_URL"
-                android:layout_weight="1"
-                android:inputType="textUri"/>
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/test_con"
-                android:id="@+id/buttonCon"
-                android:layout_weight="2"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/select_lang"
-                android:id="@+id/textViewLanguage"
-                android:layout_weight="1"/>
-
-            <Spinner
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinnerLanguages"
-                android:entries="@array/languages"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"/>
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/load_locale"
-                android:id="@+id/buttonLocale"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/test_con"
+            android:id="@+id/buttonCon"
+            android:layout_weight="2"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/urlLayout"
+        android:id="@+id/nicknameLayout">
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextNick"
+            android:hint="@string/enter_nick"
+            android:layout_weight="1"
+            android:inputType="textUri"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ok_button"
+            android:id="@+id/ok_button"
+            android:layout_weight="2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/languageLayout"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/nicknameLayout">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_lang"
+            android:id="@+id/textViewLanguage"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerLanguages"
+            android:entries="@array/languages"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/load_locale"
+            android:id="@+id/buttonLocale"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
 </RelativeLayout>

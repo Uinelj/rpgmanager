@@ -1,7 +1,12 @@
 <resources>
     <string name="enter_URL">Enter an URL</string>
+    <string name="enter_nick">Enter a nickname</string>
     <string name="test_con">Test</string>
+    <string name="ok_button">OK</string>
     <string name="image_button_desc">Change the dice size</string>
     <string name="select_lang">Language</string>
     <string name="load_locale">Load</string>
+    <string name="toast_new_nick">New nickname</string>
+    <string name="toast_r_dest">Reachable destination</string>
+    <string name="toast_unr_dest">Unreachable destination</string>
 </resources>

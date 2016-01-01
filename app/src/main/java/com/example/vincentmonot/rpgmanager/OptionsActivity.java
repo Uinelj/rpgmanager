@@ -3,7 +3,6 @@ package com.example.vincentmonot.rpgmanager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,13 +16,12 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Locale;
 import java.util.Map;
 
 public class OptionsActivity extends DrawerActivity {
 
     private static final String TAG = "OptionsActivity";
-    Button testCon, loadLocale;
+    Button testCon, acceptNick, loadLocale;
     Spinner langSelect;
 
     @Override
@@ -51,22 +49,39 @@ public class OptionsActivity extends DrawerActivity {
 
                     if (urlc.getResponseCode() == HttpURLConnection.HTTP_OK) {
                         Log.d(TAG, "Reachable destination");
-                        Toast.makeText(OptionsActivity.this, "Reachable destination", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OptionsActivity.this, R.string.toast_r_dest, Toast.LENGTH_SHORT).show();
+
+                        if (!urlString.endsWith("/")) {
+                            urlString += "/";
+                        }
+                        Log.d(TAG, "Saving URL " + urlString);
+                        SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putString("url", urlString);
+                        editor.apply();
                     }
 
                 } catch (IOException e) {
                     Log.d(TAG, "Unreachable destination");
-                    Toast.makeText(OptionsActivity.this, "Unreachable destination", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OptionsActivity.this, R.string.toast_unr_dest, Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
 
-                if (!urlString.endsWith("/")) {
-                    urlString += "/";
-                }
-                Log.d(TAG, "Saving URL " + urlString);
+        acceptNick = (Button) findViewById(R.id.ok_button);
+        acceptNick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nickname = ((EditText) findViewById(R.id.editTextNick)).getText().toString();
                 SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = settings.edit();
-                editor.putString("url", urlString);
+                editor.putString("nickname", nickname);
                 editor.apply();
+
+                Toast.makeText(
+                        OptionsActivity.this,
+                        getResources().getString(R.string.toast_new_nick)+" : "+nickname,
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -120,8 +135,17 @@ public class OptionsActivity extends DrawerActivity {
     protected void onResume() {
         super.onResume();
 
-        // Put the selected locale as default on spinner
         SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+
+        // Put the default URL in the EditText
+        String url = settings.getString("url", "http://uinelj.eu/misc/rpgm/");
+        ((EditText) findViewById(R.id.editTextURL)).setText(url);
+
+        // Put the default nickname in the EditText
+        String nickname = settings.getString("nickname", "foo");
+        ((EditText) findViewById(R.id.editTextNick)).setText(nickname);
+
+        // Put the selected locale as default on spinner
         String lang = settings.getString("locale", "en_US");
         String language;
         switch(lang) {
@@ -133,21 +157,13 @@ public class OptionsActivity extends DrawerActivity {
                 language = "English";
                 break;
         }
-        langSelect.setSelection(((ArrayAdapter) langSelect.getAdapter()).getPosition(language));
+        String[] array = {"English", "Français"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.activity_options, array);
+        langSelect.setSelection(adapter.getPosition(language));
     }
 
-    /*
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        //getBaseContext().getResources().updateConfiguration(newConfig, getBaseContext().getResources().getDisplayMetrics());
-        //setContentView(R.layout.activity_options);
-        Log.d(TAG, "newConfig.locale = "+newConfig.locale);
-    }
-    */
     @Override
     protected void onItemSelection(AdapterView<?> parent, View view, int position, long id) {
-        //Toast.makeText(this, "In DiceActivity : " + navOptions[position], Toast.LENGTH_SHORT).show();
         Intent intent;
         switch (position) {
             case 0:

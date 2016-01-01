@@ -3,6 +3,7 @@ package com.example.vincentmonot.rpgmanager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,14 @@ public class CharacterSheetActivity extends DrawerActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        LinearLayout layoutStrength = (LinearLayout) findViewById(R.id.layoutStrength);
+        layoutStrength.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         refreshData();
     }
 
@@ -37,7 +47,6 @@ public class CharacterSheetActivity extends DrawerActivity {
 
     @Override
     protected void onItemSelection(AdapterView<?> parent, View view, int position, long id) {
-        //Toast.makeText(this, "In CharacterSheetActivity : "+navOptions[position], Toast.LENGTH_SHORT).show();
         Intent intent;
         switch (position) {
             case 0:
@@ -71,9 +80,10 @@ public class CharacterSheetActivity extends DrawerActivity {
         url = settings.getString("url", "http://uinelj.eu/misc/rpgm/");
 
         if (networkInfo != null && networkInfo.isConnected()) {
-            String fullUrl = url+"action.php?a=get&id=foo";
+            String nickname = settings.getString("nickname", "foo");
+            String fullUrl = url+"action.php?a=get&id="+nickname;
             Log.d(TAG, "LOADING URL "+fullUrl);
-            Request req = new Request(url+"action.php?a=get&id=foo", this);
+            Request req = new Request(fullUrl, this);
             if(req.getResult().containsKey("success")) {
                 if (req.getValue("success").equals("true")) {
                     ((TextView) findViewById(R.id.textNickname)).setText(req.getValue("name"));
@@ -101,17 +111,37 @@ public class CharacterSheetActivity extends DrawerActivity {
                     ((TextView) findViewById(R.id.textWisdom)).setText(req.getValue("wis"));
                     ((TextView) findViewById(R.id.textCharisma)).setText(req.getValue("cha"));
                 } else {
-                    Log.d(TAG, req.getValue("msg") + " (" + req.getValue("id") + ")");
-                    Toast.makeText(CharacterSheetActivity.this, req.getValue("msg") + " (" + req.getValue("id") + ")", Toast.LENGTH_SHORT).show();
+                    Resources r = getResources();
+                    ((TextView) findViewById(R.id.textNickname)).setText(r.getString(R.string.textNickname));
+                    ((TextView) findViewById(R.id.textAlignment)).setText(r.getString(R.string.textAlignment));
+                    ((TextView) findViewById(R.id.textRace)).setText(r.getString(R.string.textRace));
+                    ((TextView) findViewById(R.id.textClass)).setText(r.getString(R.string.textClass));
+
+                    ((TextView) findViewById(R.id.textCurrentHealth)).setText(r.getString(R.string.base_value));
+                    ((TextView) findViewById(R.id.textMaxHealth)).setText(r.getString(R.string.base_health));
+                    ((TextView) findViewById(R.id.textDmg)).setText(r.getString(R.string.base_dmg));
+                    ((TextView) findViewById(R.id.textDefense)).setText(r.getString(R.string.base_value));
+
+                    ((TextView) findViewById(R.id.textLevel)).setText(r.getString(R.string.base_level));
+                    ((TextView) findViewById(R.id.textStrength)).setText(r.getString(R.string.base_value));
+                    ((TextView) findViewById(R.id.textDexterity)).setText(r.getString(R.string.base_value));
+                    ((TextView) findViewById(R.id.textConstitution)).setText(r.getString(R.string.base_value));
+                    ((TextView) findViewById(R.id.textIntelligence)).setText(r.getString(R.string.base_value));
+                    ((TextView) findViewById(R.id.textWisdom)).setText(r.getString(R.string.base_value));
+                    ((TextView) findViewById(R.id.textCharisma)).setText(r.getString(R.string.base_value));
+
+                    String message = req.getValue("msg") + " (" + req.getValue("id") + ")";
+                    Log.d(TAG, message);
+                    Toast.makeText(CharacterSheetActivity.this, message, Toast.LENGTH_SHORT).show();
                 }
             }
             else {
                 Log.d(TAG, "Unable to retrieve data");
-                Toast.makeText(CharacterSheetActivity.this, "Unable to retrieve data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CharacterSheetActivity.this, R.string.toast_no_data, Toast.LENGTH_SHORT).show();
             }
         } else {
             Log.d(TAG, "Network isn't working");
-            Toast.makeText(CharacterSheetActivity.this, "Network isn't working", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CharacterSheetActivity.this, R.string.toast_no_network, Toast.LENGTH_SHORT).show();
         }
     }
 }
