@@ -15,10 +15,19 @@
     <string name="intelligence">INT</string>
     <string name="wisdom">SAG</string>
     <string name="charisma">CHA</string>
+    <string name="strength_picker">Force</string>
+    <string name="dexterity_picker">Dexterité</string>
+    <string name="constitution_picker">Constitution</string>
+    <string name="intelligence_picker">Intelligence</string>
+    <string name="wisdom_picker">Sagesse</string>
+    <string name="charisma_picker">Charisme</string>
     <string name="base_value">10</string>
     <string name="base_level">10(50)</string>
     <string name="base_health">/10</string>
     <string name="base_dmg">d6</string>
+
+    <string name="picker_ok">OK</string>
+    <string name="picker_cancel">Annuler</string>
 
     <string name="toast_no_data">Impossible de récupérer les données</string>
     <string name="toast_no_network">Impossible de se connecter au réseau</string>
