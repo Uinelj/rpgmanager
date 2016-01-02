@@ -54,7 +54,7 @@ public class DiceActivity extends DrawerActivity {
             public void onClick(View v) {
                 Log.d("DiceActivity", "Click on imageButton");
                 AlertDialog.Builder builder = new AlertDialog.Builder(DiceActivity.this);
-                builder.setTitle("Number of faces")
+                builder.setTitle(getResources().getString(R.string.nb_faces))
                     .setItems(R.array.dices_array, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -169,7 +169,6 @@ public class DiceActivity extends DrawerActivity {
         Intent intent;
         switch (position) {
             case 0:
-                //mDrawerLayout.closeDrawer(mDrawerList);
                 intent = new Intent(this, CharacterSheetActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
@@ -179,7 +178,6 @@ public class DiceActivity extends DrawerActivity {
                 mDrawerLayout.closeDrawers();
                 break;
             case 2:
-                //mDrawerLayout.closeDrawer(mDrawerList);
                 intent = new Intent(this, OptionsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);

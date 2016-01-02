@@ -22,10 +22,6 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-/** TODO
- * Update les valeurs via une requête vers la page HTTP depuis : LayoutNumberPicker->setPositiveButton->onClick (ligne 216)
- */
-
 public class CharacterSheetActivity extends DrawerActivity {
 
     private final static String TAG = "CharacterSheetActivity";
@@ -41,31 +37,39 @@ public class CharacterSheetActivity extends DrawerActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        LinearLayout layoutStrength = (LinearLayout) findViewById(R.id.layoutStrength);
-        layoutStrength.setOnClickListener(new LayoutNumberPicker(R.string.strength_picker, R.id.textStrength));
-
-        LinearLayout layoutDexterity = (LinearLayout) findViewById(R.id.layoutDexterity);
-        layoutDexterity.setOnClickListener(new LayoutNumberPicker(R.string.dexterity_picker, R.id.textDexterity));
-
-        LinearLayout layoutConstitution = (LinearLayout) findViewById(R.id.layoutConstitution);
-        layoutConstitution.setOnClickListener(new LayoutNumberPicker(R.string.constitution_picker, R.id.textConstitution));
-
-        LinearLayout layoutIntelligence = (LinearLayout) findViewById(R.id.layoutIntelligence);
-        layoutIntelligence.setOnClickListener(new LayoutNumberPicker(R.string.intelligence_picker, R.id.textIntelligence));
-
-        LinearLayout layoutWisdom = (LinearLayout) findViewById(R.id.layoutWisdom);
-        layoutWisdom.setOnClickListener(new LayoutNumberPicker(R.string.wisdom_picker, R.id.textWisdom));
-
-        LinearLayout layoutCharisma = (LinearLayout) findViewById(R.id.layoutCharisma);
-        layoutCharisma.setOnClickListener(new LayoutNumberPicker(R.string.charisma_picker, R.id.textCharisma));
-
         refreshData();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        Resources r = getResources();
+
+        // If we updated the locale, we need to reload the activity
+        String dispLvl = ((TextView) findViewById(R.id.textViewLevel)).getText().toString();
+        String rightLvl = r.getString(R.string.level);
+        if(! dispLvl.equalsIgnoreCase(rightLvl)) {
+            Intent intent = getIntent();
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            this.finish();
+            startActivity(intent);
+        }
+
         refreshData();
+
+        LinearLayout layoutStrength = (LinearLayout) findViewById(R.id.layoutStrength);
+        layoutStrength.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.strength_picker), R.id.textStrength, "str"));
+        LinearLayout layoutDexterity = (LinearLayout) findViewById(R.id.layoutDexterity);
+        layoutDexterity.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.dexterity_picker), R.id.textDexterity, "dex"));
+        LinearLayout layoutConstitution = (LinearLayout) findViewById(R.id.layoutConstitution);
+        layoutConstitution.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.constitution_picker), R.id.textConstitution, "con"));
+        LinearLayout layoutIntelligence = (LinearLayout) findViewById(R.id.layoutIntelligence);
+        layoutIntelligence.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.intelligence_picker), R.id.textIntelligence, "intel"));
+        LinearLayout layoutWisdom = (LinearLayout) findViewById(R.id.layoutWisdom);
+        layoutWisdom.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.wisdom_picker), R.id.textWisdom, "wis"));
+        LinearLayout layoutCharisma = (LinearLayout) findViewById(R.id.layoutCharisma);
+        layoutCharisma.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.charisma_picker), R.id.textCharisma, "cha"));
     }
 
     @Override
@@ -73,18 +77,15 @@ public class CharacterSheetActivity extends DrawerActivity {
         Intent intent;
         switch (position) {
             case 0:
-                super.updateLocale();
                 mDrawerLayout.closeDrawers();
                 refreshData();
                 break;
             case 1:
-                //mDrawerLayout.closeDrawer(mDrawerList);
                 intent = new Intent(this, DiceActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case 2:
-                //mDrawerLayout.closeDrawer(mDrawerList);
                 intent = new Intent(this, OptionsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
@@ -105,7 +106,7 @@ public class CharacterSheetActivity extends DrawerActivity {
         if (networkInfo != null && networkInfo.isConnected()) {
             String nickname = settings.getString("nickname", "foo");
             String fullUrl = url+"action.php?a=get&id="+nickname;
-            Log.d(TAG, "LOADING URL "+fullUrl);
+            Log.d(TAG, "Retrieving data from: "+fullUrl);
             Request req = new Request(fullUrl, this);
             if(req.getResult().containsKey("success")) {
                 if (req.getValue("success").equals("true")) {
@@ -128,17 +129,17 @@ public class CharacterSheetActivity extends DrawerActivity {
                     level += "(" + xp + ")";
                     ((TextView) findViewById(R.id.textLevel)).setText(level);
                     ((TextView) findViewById(R.id.textStrength)).setText(req.getValue("str"));
-                    pickerValues.put("strength", Integer.valueOf(req.getValue("str")));
+                    pickerValues.put("str", Integer.valueOf(req.getValue("str")));
                     ((TextView) findViewById(R.id.textDexterity)).setText(req.getValue("dex"));
-                    pickerValues.put("dexterity", Integer.valueOf(req.getValue("dex")));
+                    pickerValues.put("dex", Integer.valueOf(req.getValue("dex")));
                     ((TextView) findViewById(R.id.textConstitution)).setText(req.getValue("con"));
-                    pickerValues.put("constitution", Integer.valueOf(req.getValue("con")));
+                    pickerValues.put("con", Integer.valueOf(req.getValue("con")));
                     ((TextView) findViewById(R.id.textIntelligence)).setText(req.getValue("intel"));
-                    pickerValues.put("intelligence", Integer.valueOf(req.getValue("intel")));
+                    pickerValues.put("intel", Integer.valueOf(req.getValue("intel")));
                     ((TextView) findViewById(R.id.textWisdom)).setText(req.getValue("wis"));
-                    pickerValues.put("wisdom", Integer.valueOf(req.getValue("wis")));
+                    pickerValues.put("wis", Integer.valueOf(req.getValue("wis")));
                     ((TextView) findViewById(R.id.textCharisma)).setText(req.getValue("cha"));
-                    pickerValues.put("charisma", Integer.valueOf(req.getValue("cha")));
+                    pickerValues.put("cha", Integer.valueOf(req.getValue("cha")));
                 } else {
                     Resources r = getResources();
                     ((TextView) findViewById(R.id.textNickname)).setText(r.getString(R.string.textNickname));
@@ -153,17 +154,17 @@ public class CharacterSheetActivity extends DrawerActivity {
 
                     ((TextView) findViewById(R.id.textLevel)).setText(r.getString(R.string.base_level));
                     ((TextView) findViewById(R.id.textStrength)).setText(r.getString(R.string.base_value));
-                    pickerValues.put("strength", Integer.valueOf(r.getString(R.string.base_value)));
+                    pickerValues.put("str", Integer.valueOf(r.getString(R.string.base_value)));
                     ((TextView) findViewById(R.id.textDexterity)).setText(r.getString(R.string.base_value));
-                    pickerValues.put("dexterity", Integer.valueOf(r.getString(R.string.base_value)));
+                    pickerValues.put("dex", Integer.valueOf(r.getString(R.string.base_value)));
                     ((TextView) findViewById(R.id.textConstitution)).setText(r.getString(R.string.base_value));
-                    pickerValues.put("constitution", Integer.valueOf(r.getString(R.string.base_value)));
+                    pickerValues.put("con", Integer.valueOf(r.getString(R.string.base_value)));
                     ((TextView) findViewById(R.id.textIntelligence)).setText(r.getString(R.string.base_value));
-                    pickerValues.put("intelligence", Integer.valueOf(r.getString(R.string.base_value)));
+                    pickerValues.put("intel", Integer.valueOf(r.getString(R.string.base_value)));
                     ((TextView) findViewById(R.id.textWisdom)).setText(r.getString(R.string.base_value));
-                    pickerValues.put("wisdom", Integer.valueOf(r.getString(R.string.base_value)));
+                    pickerValues.put("wis", Integer.valueOf(r.getString(R.string.base_value)));
                     ((TextView) findViewById(R.id.textCharisma)).setText(r.getString(R.string.base_value));
-                    pickerValues.put("charisma", Integer.valueOf(r.getString(R.string.base_value)));
+                    pickerValues.put("cha", Integer.valueOf(r.getString(R.string.base_value)));
 
                     String message = req.getValue("msg") + " (" + req.getValue("id") + ")";
                     Log.d(TAG, message);
@@ -181,21 +182,35 @@ public class CharacterSheetActivity extends DrawerActivity {
     }
 
     private class LayoutNumberPicker implements View.OnClickListener {
-        int idTitle = 0, idTextView = 0;
+        int idTextView = 0;
+        String title = "", field = "";
 
-        public LayoutNumberPicker(int idTitle, int idTextView) {
+        public LayoutNumberPicker(String title, int idTextView, String field) {
             super();
-            this.idTitle = idTitle;
+            this.title = title;
             this.idTextView = idTextView;
+            this.field = field;
         }
 
         @Override
         public void onClick(View v) {
+            String values[] = new String[100];
+            for(int i=0 ; i<100 ; i++) {
+                if(i>=90) {
+                    values[i] = "0"+Integer.toString(99-i);
+                }
+                else {
+                    values[i] = Integer.toString(99 - i);
+                }
+            }
+
             final NumberPicker numPicker = new NumberPicker(CharacterSheetActivity.this);
             numPicker.setMinValue(0);
             numPicker.setMaxValue(99);
-            numPicker.setValue(pickerValues.get(getResources().getString(idTitle).toLowerCase()));
+            numPicker.setValue(99-pickerValues.get(field));
             numPicker.setWrapSelectorWheel(false);
+            numPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+            numPicker.setDisplayedValues(values);
 
             RelativeLayout pickerLayout = new RelativeLayout(CharacterSheetActivity.this);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(50, 50);
@@ -208,21 +223,43 @@ public class CharacterSheetActivity extends DrawerActivity {
             pickerLayout.addView(numPicker, numPickerParams);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(CharacterSheetActivity.this);
-            builder.setTitle(getResources().getString(idTitle))
+            builder.setTitle(title)
                     .setView(pickerLayout)
                     .setPositiveButton(getResources().getString(R.string.picker_ok),
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Log.d(TAG, "new "+getResources().getString(idTitle).toLowerCase()+" = "+numPicker.getValue());
-                                    ((TextView) findViewById(idTextView)).setText(String.valueOf(numPicker.getValue()));
+                                    String newValue = String.valueOf(99-numPicker.getValue());
+                                    ((TextView) findViewById(idTextView)).setText(newValue);
+                                    pickerValues.put(field, Integer.valueOf(newValue));
+
+                                    SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+                                    String urlSettings = settings.getString("url", "http://uinelj.eu/misc/rpgm/");
+                                    String playerId = settings.getString("nickname", "foo");
+
+                                    String fullUrl = urlSettings + "action.php?a=update&id=" + playerId
+                                            + "&field=" + field + "&value=" + newValue;
+
+                                    Request req = new Request(fullUrl, CharacterSheetActivity.this);
+                                    if(req.getResult().containsKey("success")) {
+                                        if(req.getValue("success").equals("true")) {
+                                            Toast.makeText(CharacterSheetActivity.this,
+                                                    R.string.toast_chg_data_ok,
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                        else if(req.getValue("success").equals("false")){
+                                            Toast.makeText(CharacterSheetActivity.this,
+                                                    R.string.toast_chg_data_err,
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
                                 }
                             })
                     .setNegativeButton(getResources().getString(R.string.picker_cancel),
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Log.d(TAG, "Cancelling");
                                     dialog.cancel();
                                 }
                             });

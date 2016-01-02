@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="menuName">Menu</string>
-    <string name="textNickname">Pseudonyme</string>
+    <string name="textNickname">Pseudo</string>
     <string name="textAlignment">Alignement</string>
     <string name="textRace">Race</string>
     <string name="textClass">Classe</string>
@@ -28,6 +28,9 @@
 
     <string name="picker_ok">OK</string>
     <string name="picker_cancel">Annuler</string>
+
+    <string name="toast_chg_data_ok">Valeur changée</string>
+    <string name="toast_chg_data_err">Impossible de changer la valeur</string>
 
     <string name="toast_no_data">Impossible de récupérer les données</string>
     <string name="toast_no_network">Impossible de se connecter au réseau</string>

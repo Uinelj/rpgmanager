@@ -70,7 +70,7 @@ public class DrawerActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume is called");
-        //mDrawerLayout.closeDrawers();
+        mDrawerLayout.closeDrawers();
         updateLocale();
 
 
@@ -95,11 +95,6 @@ public class DrawerActivity extends AppCompatActivity {
         if(getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
         }
-        /*
-        if((! mDrawerLayout.isDrawerOpen(mDrawerList)) && (! getClass().getSimpleName().equals("CharacterSheetActivity"))) {
-            mDrawerLayout.openDrawer(mDrawerList);
-        }
-        */
     }
 
 
@@ -122,7 +117,6 @@ public class DrawerActivity extends AppCompatActivity {
 
     @Override
     public void setContentView(final int layoutResID) {
-        //DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_drawer, null);
         DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_drawer, (ViewGroup) getCurrentFocus());
         RelativeLayout actContent = (RelativeLayout) fullLayout.findViewById(R.id.drawer_content);
 

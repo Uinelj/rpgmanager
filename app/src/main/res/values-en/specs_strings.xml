@@ -29,6 +29,9 @@
     <string name="picker_ok">OK</string>
     <string name="picker_cancel">Cancel</string>
 
+    <string name="toast_chg_data_ok">Value changed</string>
+    <string name="toast_chg_data_err">Unable to change the value</string>
+
     <string name="toast_no_data">Unable to retrieve data</string>
     <string name="toast_no_network">Network isn\'t connected</string>
 </resources>
