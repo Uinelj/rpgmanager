@@ -216,6 +216,10 @@ public class CharacterSheetActivity extends DrawerActivity {
                     ((TextView) findViewById(R.id.textCharisma)).setText(r.getString(R.string.base_value));
                     pickerValues.put("cha", Integer.valueOf(r.getString(R.string.base_value)));
 
+                    ((TextView) findViewById(R.id.textBonds)).setText(r.getString(R.string.textBonds));
+                    ((TextView) findViewById(R.id.textGear)).setText(r.getString(R.string.textGear));
+                    ((TextView) findViewById(R.id.textMoves)).setText(r.getString(R.string.textMoves));
+
                     String message = req.getValue("msg") + " (" + req.getValue("id") + ")";
                     Toast.makeText(CharacterSheetActivity.this, message, Toast.LENGTH_SHORT).show();
                 }

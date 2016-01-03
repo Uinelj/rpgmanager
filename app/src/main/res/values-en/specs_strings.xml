@@ -5,6 +5,9 @@
     <string name="textAlignment">Alignment</string>
     <string name="textRace">Race</string>
     <string name="textClass">Class</string>
+    <string name="textBonds">Bonds</string>
+    <string name="textGear">Gear</string>
+    <string name="textMoves">Moves</string>
     <string name="healthPoints">Health points</string>
     <string name="attackPoints">Attack points</string>
     <string name="defensePoints">Defense points</string>
