@@ -15,6 +15,8 @@
     <string name="intelligence">INT</string>
     <string name="wisdom">WIS</string>
     <string name="charisma">CHA</string>
+    <string name="health_picker">Current &amp; Maximum HP</string>
+    <string name="level_picker">Level &amp; Experience</string>
     <string name="strength_picker">Strength</string>
     <string name="dexterity_picker">Dexterity</string>
     <string name="constitution_picker">Constitution</string>

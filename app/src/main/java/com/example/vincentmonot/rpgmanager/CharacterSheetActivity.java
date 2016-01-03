@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -58,18 +59,39 @@ public class CharacterSheetActivity extends DrawerActivity {
 
         refreshData();
 
+        RelativeLayout layoutHealth = (RelativeLayout) findViewById(R.id.layoutHealth);
+        layoutHealth.setOnClickListener(new LayoutNumberPicker(
+                r.getString(R.string.health_picker),
+                R.id.textCurrentHealth, "hp;maxhp"));
+
+        LinearLayout layoutLevel = (LinearLayout) findViewById(R.id.layoutLevel);
+        layoutLevel.setOnClickListener(new LayoutNumberPicker(
+                r.getString(R.string.level_picker),
+                R.id.textLevel, "lvl;xp"));
         LinearLayout layoutStrength = (LinearLayout) findViewById(R.id.layoutStrength);
-        layoutStrength.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.strength_picker), R.id.textStrength, "str"));
+        layoutStrength.setOnClickListener(new LayoutNumberPicker(
+                r.getString(R.string.strength_picker),
+                R.id.textStrength, "str"));
         LinearLayout layoutDexterity = (LinearLayout) findViewById(R.id.layoutDexterity);
-        layoutDexterity.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.dexterity_picker), R.id.textDexterity, "dex"));
+        layoutDexterity.setOnClickListener(new LayoutNumberPicker(
+                r.getString(R.string.dexterity_picker),
+                R.id.textDexterity, "dex"));
         LinearLayout layoutConstitution = (LinearLayout) findViewById(R.id.layoutConstitution);
-        layoutConstitution.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.constitution_picker), R.id.textConstitution, "con"));
+        layoutConstitution.setOnClickListener(new LayoutNumberPicker(
+                r.getString(R.string.constitution_picker),
+                R.id.textConstitution, "con"));
         LinearLayout layoutIntelligence = (LinearLayout) findViewById(R.id.layoutIntelligence);
-        layoutIntelligence.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.intelligence_picker), R.id.textIntelligence, "intel"));
+        layoutIntelligence.setOnClickListener(new LayoutNumberPicker(
+                r.getString(R.string.intelligence_picker),
+                R.id.textIntelligence, "intel"));
         LinearLayout layoutWisdom = (LinearLayout) findViewById(R.id.layoutWisdom);
-        layoutWisdom.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.wisdom_picker), R.id.textWisdom, "wis"));
+        layoutWisdom.setOnClickListener(new LayoutNumberPicker(
+                r.getString(R.string.wisdom_picker),
+                R.id.textWisdom, "wis"));
         LinearLayout layoutCharisma = (LinearLayout) findViewById(R.id.layoutCharisma);
-        layoutCharisma.setOnClickListener(new LayoutNumberPicker(r.getString(R.string.charisma_picker), R.id.textCharisma, "cha"));
+        layoutCharisma.setOnClickListener(new LayoutNumberPicker(
+                r.getString(R.string.charisma_picker),
+                R.id.textCharisma, "cha"));
     }
 
     @Override
@@ -116,18 +138,22 @@ public class CharacterSheetActivity extends DrawerActivity {
                     ((TextView) findViewById(R.id.textClass)).setText(req.getValue("class"));
 
                     ((TextView) findViewById(R.id.textCurrentHealth)).setText(req.getValue("hp"));
+                    pickerValues.put("hp", Integer.valueOf(req.getValue("hp")));
                     String maxHealth = "/" + req.getValue("maxhp");
                     ((TextView) findViewById(R.id.textMaxHealth)).setText(maxHealth);
+                    pickerValues.put("maxhp", Integer.valueOf(req.getValue("maxhp")));
                     ((TextView) findViewById(R.id.textDmg)).setText(req.getValue("dmg"));
                     ((TextView) findViewById(R.id.textDefense)).setText(req.getValue("armour"));
 
                     String level = req.getValue("lvl");
+                    pickerValues.put("lvl", Integer.valueOf(level));
                     String xp = req.getValue("xp");
                     if (Integer.valueOf(xp) < 10) {
                         xp = "0" + xp;
                     }
                     level += "(" + xp + ")";
                     ((TextView) findViewById(R.id.textLevel)).setText(level);
+                    pickerValues.put("xp", Integer.valueOf(xp));
                     ((TextView) findViewById(R.id.textStrength)).setText(req.getValue("str"));
                     pickerValues.put("str", Integer.valueOf(req.getValue("str")));
                     ((TextView) findViewById(R.id.textDexterity)).setText(req.getValue("dex"));
@@ -184,12 +210,15 @@ public class CharacterSheetActivity extends DrawerActivity {
     private class LayoutNumberPicker implements View.OnClickListener {
         int idTextView = 0;
         String title = "", field = "";
+        String[] split;
 
         public LayoutNumberPicker(String title, int idTextView, String field) {
             super();
             this.title = title;
             this.idTextView = idTextView;
             this.field = field;
+
+            split = field.split(";");
         }
 
         @Override
@@ -203,57 +232,103 @@ public class CharacterSheetActivity extends DrawerActivity {
                     values[i] = Integer.toString(99 - i);
                 }
             }
-
             final NumberPicker numPicker = new NumberPicker(CharacterSheetActivity.this);
             numPicker.setMinValue(0);
             numPicker.setMaxValue(99);
-            numPicker.setValue(99-pickerValues.get(field));
             numPicker.setWrapSelectorWheel(false);
             numPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
             numPicker.setDisplayedValues(values);
 
-            RelativeLayout pickerLayout = new RelativeLayout(CharacterSheetActivity.this);
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(50, 50);
-            RelativeLayout.LayoutParams numPickerParams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout.LayoutParams.WRAP_CONTENT);
-            numPickerParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            LinearLayout pickerLayout = new LinearLayout(CharacterSheetActivity.this);
+            pickerLayout.setOrientation(LinearLayout.HORIZONTAL);
+            pickerLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(50, 50);
+            LinearLayout.LayoutParams numPickerParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
 
             pickerLayout.setLayoutParams(params);
-            pickerLayout.addView(numPicker, numPickerParams);
+
+            NumberPicker numPicker2 = new NumberPicker(CharacterSheetActivity.this);
+            switch (split[0]) {
+                case "lvl":
+                    String values2[] = new String[1000];
+                    for (int i = 0; i < 1000; i++) {
+                        if (i >= 990) {
+                            values2[i] = "00" + Integer.toString(999 - i);
+                        } else if (i >= 900) {
+                            values2[i] = "0" + Integer.toString(999 - i);
+                        } else {
+                            values2[i] = Integer.toString(999 - i);
+                        }
+                    }
+                    numPicker.setValue(99 - pickerValues.get(split[0]));
+
+                    numPicker2.setMinValue(0);
+                    numPicker2.setMaxValue(999);
+                    numPicker2.setValue(999 - pickerValues.get(split[1]));
+                    numPicker2.setWrapSelectorWheel(false);
+                    numPicker2.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+                    numPicker2.setDisplayedValues(values2);
+
+                    numPickerParams.setMargins(50, 0, 50, 0);
+                    pickerLayout.addView(numPicker, numPickerParams);
+                    pickerLayout.addView(numPicker2, numPickerParams);
+                    break;
+                case "hp":
+                    numPicker.setValue(99 - pickerValues.get(split[0]));
+
+                    numPicker2.setMinValue(0);
+                    numPicker2.setMaxValue(99);
+                    numPicker2.setValue(99 - pickerValues.get(split[1]));
+                    numPicker2.setWrapSelectorWheel(false);
+                    numPicker2.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+                    numPicker2.setDisplayedValues(values);
+
+                    numPickerParams.setMargins(50, 0, 50, 0);
+                    pickerLayout.addView(numPicker, numPickerParams);
+                    pickerLayout.addView(numPicker2, numPickerParams);
+                    break;
+                default:
+                    numPicker.setValue(99 - pickerValues.get(field));
+                    pickerLayout.addView(numPicker, numPickerParams);
+                    break;
+            }
 
             AlertDialog.Builder builder = new AlertDialog.Builder(CharacterSheetActivity.this);
+            final NumberPicker finalNumPicker2 = numPicker2;
             builder.setTitle(title)
                     .setView(pickerLayout)
                     .setPositiveButton(getResources().getString(R.string.picker_ok),
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    String newValue = String.valueOf(99-numPicker.getValue());
-                                    ((TextView) findViewById(idTextView)).setText(newValue);
-                                    pickerValues.put(field, Integer.valueOf(newValue));
+                                    switch (split[0]) {
+                                        case "lvl":
+                                            updateValue(split[0], String.valueOf(99 - numPicker.getValue()));
+                                            updateValue(split[1], String.valueOf(999 - finalNumPicker2.getValue()));
 
-                                    SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
-                                    String urlSettings = settings.getString("url", "http://uinelj.eu/misc/rpgm/");
-                                    String playerId = settings.getString("nickname", "foo");
+                                            String level = pickerValues.get("lvl") + "(" + pickerValues.get("xp") + ")";
+                                            ((TextView) findViewById(R.id.textLevel)).setText(level);
+                                            break;
+                                        case "hp": {
+                                            String newValue = String.valueOf(99 - numPicker.getValue());
+                                            updateValue(split[0], newValue);
+                                            ((TextView) findViewById(R.id.textCurrentHealth)).setText(newValue);
 
-                                    String fullUrl = urlSettings + "action.php?a=update&id=" + playerId
-                                            + "&field=" + field + "&value=" + newValue;
-
-                                    Request req = new Request(fullUrl, CharacterSheetActivity.this);
-                                    if(req.getResult().containsKey("success")) {
-                                        if(req.getValue("success").equals("true")) {
-                                            Toast.makeText(CharacterSheetActivity.this,
-                                                    R.string.toast_chg_data_ok,
-                                                    Toast.LENGTH_SHORT).show();
+                                            newValue = String.valueOf(99 - finalNumPicker2.getValue());
+                                            updateValue(split[1], newValue);
+                                            String maxhp = "/" + pickerValues.get("maxhp");
+                                            ((TextView) findViewById(R.id.textMaxHealth)).setText(maxhp);
+                                            break;
                                         }
-                                        else if(req.getValue("success").equals("false")){
-                                            Toast.makeText(CharacterSheetActivity.this,
-                                                    R.string.toast_chg_data_err,
-                                                    Toast.LENGTH_SHORT).show();
+                                        default: {
+                                            String newValue = String.valueOf(99 - numPicker.getValue());
+                                            updateValue(split[0], newValue);
+                                            ((TextView) findViewById(idTextView)).setText(newValue);
+                                            break;
                                         }
                                     }
-
                                 }
                             })
                     .setNegativeButton(getResources().getString(R.string.picker_cancel),
@@ -265,6 +340,31 @@ public class CharacterSheetActivity extends DrawerActivity {
                             });
             AlertDialog dialog = builder.create();
             dialog.show();
+        }
+
+        private void updateValue(String field, String value) {
+            pickerValues.put(field, Integer.valueOf(value));
+
+            SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+            String urlSettings = settings.getString("url", "http://uinelj.eu/misc/rpgm/");
+            String playerId = settings.getString("nickname", "foo");
+
+            String fullUrl = urlSettings + "action.php?a=update&id=" + playerId
+                    + "&field=" + field + "&value=" + value;
+
+            Request req = new Request(fullUrl, CharacterSheetActivity.this);
+            if(req.getResult().containsKey("success")) {
+                if(req.getValue("success").equals("true")) {
+                    Toast.makeText(CharacterSheetActivity.this,
+                            R.string.toast_chg_data_ok,
+                            Toast.LENGTH_SHORT).show();
+                }
+                else if(req.getValue("success").equals("false")){
+                    Toast.makeText(CharacterSheetActivity.this,
+                            R.string.toast_chg_data_err,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
 }

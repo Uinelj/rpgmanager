@@ -15,6 +15,8 @@
     <string name="intelligence">INT</string>
     <string name="wisdom">SAG</string>
     <string name="charisma">CHA</string>
+    <string name="health_picker">PV Actuels &amp; Maximum</string>
+    <string name="level_picker">Niveau &amp; Experience</string>
     <string name="strength_picker">Force</string>
     <string name="dexterity_picker">Dexterité</string>
     <string name="constitution_picker">Constitution</string>
