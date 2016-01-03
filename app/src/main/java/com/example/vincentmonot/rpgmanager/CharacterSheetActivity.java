@@ -184,6 +184,10 @@ public class CharacterSheetActivity extends DrawerActivity {
                     pickerValues.put("wis", Integer.valueOf(req.getValue("wis")));
                     ((TextView) findViewById(R.id.textCharisma)).setText(req.getValue("cha"));
                     pickerValues.put("cha", Integer.valueOf(req.getValue("cha")));
+
+                    ((TextView) findViewById(R.id.textBonds)).setText(req.getValue("bonds"));
+                    ((TextView) findViewById(R.id.textGear)).setText(req.getValue("Gear"));
+                    ((TextView) findViewById(R.id.textMoves)).setText(req.getValue("Moves"));
                 }
                 // If it didn't work, we put the default values
                 else {
