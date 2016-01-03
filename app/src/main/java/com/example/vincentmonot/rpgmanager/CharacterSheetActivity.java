@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -41,7 +40,9 @@ public class CharacterSheetActivity extends DrawerActivity {
 
         refreshData();
 
-        Intent notifIntent = new Intent(this, NotificationService.class);
+        Intent notifIntent = new Intent(getApplicationContext(), NotificationService.class);
+        notifIntent.addCategory(NotificationService.TAG);
+        stopService(notifIntent);
         startService(notifIntent);
     }
 
@@ -186,8 +187,9 @@ public class CharacterSheetActivity extends DrawerActivity {
                     pickerValues.put("cha", Integer.valueOf(req.getValue("cha")));
 
                     ((TextView) findViewById(R.id.textBonds)).setText(req.getValue("bonds"));
-                    ((TextView) findViewById(R.id.textGear)).setText(req.getValue("Gear"));
-                    ((TextView) findViewById(R.id.textMoves)).setText(req.getValue("Moves"));
+                    ((TextView) findViewById(R.id.textGear)).setText(req.getValue("gear"));
+                    ((TextView) findViewById(R.id.textMoves)).setText(req.getValue("moves"));
+
                 }
                 // If it didn't work, we put the default values
                 else {

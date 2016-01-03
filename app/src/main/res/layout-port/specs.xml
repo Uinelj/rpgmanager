@@ -140,7 +140,7 @@
                 android:src="@drawable/heart"
                 android:layout_gravity="top"
                 android:contentDescription="@string/healthPoints"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 />
 
@@ -148,8 +148,8 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/imageViewHP"
-                android:layout_alignRight="@+id/imageViewHP"
+                android:layout_alignStart="@+id/imageViewHP"
+                android:layout_alignEnd="@+id/imageViewHP"
                 android:gravity="center_horizontal"
                 android:layout_centerInParent="true"
                 android:id="@+id/layoutHealthValues">
@@ -168,7 +168,7 @@
                     android:id="@+id/textMaxHealth"
                     android:textColor="#000000"/>
             </LinearLayout>
-
+            <!--
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignEnd="@+id/layoutHealthValues"
                 android:layout_alignParentBottom="true" />
-
+            -->
         </RelativeLayout>
 
         <RelativeLayout
@@ -197,7 +197,7 @@
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/swords"
                 android:contentDescription="@string/attackPoints"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 />
 
@@ -207,11 +207,11 @@
                 android:text="@string/base_dmg"
                 android:id="@+id/textDmg"
                 android:layout_centerInParent="true"
-                android:layout_alignLeft="@+id/imageViewAttack"
-                android:layout_alignRight="@+id/imageViewAttack"
+                android:layout_alignStart="@+id/imageViewAttack"
+                android:layout_alignEnd="@+id/imageViewAttack"
                 android:gravity="center_horizontal"
-                android:textStyle="bold"
-                android:layout_alignEnd="@+id/layoutDamageValues" />
+                android:textStyle="bold" />
+            <!-- android:layout_alignEnd="@+id/layoutDamageValues" -->
 
         </RelativeLayout>
 
@@ -230,7 +230,7 @@
                 android:layout_gravity="end|top"
                 android:src="@drawable/shield"
                 android:contentDescription="@string/defensePoints"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 />
 
@@ -240,8 +240,8 @@
                 android:text="@string/base_value"
                 android:id="@+id/textDefense"
                 android:layout_centerInParent="true"
-                android:layout_alignLeft="@+id/imageViewShield"
-                android:layout_alignRight="@+id/imageViewShield"
+                android:layout_alignStart="@+id/imageViewShield"
+                android:layout_alignEnd="@+id/imageViewShield"
                 android:gravity="center_horizontal"
                 android:textStyle="bold"/>
         </RelativeLayout>
@@ -425,7 +425,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="false"
@@ -433,27 +433,54 @@
         android:layout_below="@+id/linearLayout3"
         android:layout_marginTop="10dp"
         android:id="@+id/linearLayout4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/textViewBonds"
+            android:text="@string/textBonds"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:text="@string/textBonds"
+            android:id="@+id/textBonds"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textViewGear"
+            android:text="@string/textGear"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:text="@string/textGear"
+            android:id="@+id/textGear"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textViewMoves"
+            android:text="@string/textMoves"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+        <TextView
+            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:text="@string/textMoves"
+            android:id="@+id/textMoves"
+            android:layout_weight="1" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textGear"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="301dp"
-        android:layout_marginBottom="127dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textMoves"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textGear"
-        android:layout_marginBottom="58dp" />
 
 </RelativeLayout>

@@ -1,7 +1,6 @@
 package com.example.vincentmonot.rpgmanager;
 
 import android.app.IntentService;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -11,9 +10,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
-import android.util.Log;
 
 public class NotificationService extends IntentService {
+    public static final String TAG = "NotificationServiceTag";
     int NOTIF_LEVEL_UP = 1337;
     int NOTIF_DEATH = 666;
 
@@ -29,7 +28,7 @@ public class NotificationService extends IntentService {
             try {
                 SharedPreferences notifSettings = getSharedPreferences("notifications", Context.MODE_PRIVATE);
                 allowNotif = notifSettings.getBoolean("allow", true);
-                int oldLvl = notifSettings.getInt("level", 0);
+                int oldLvl = notifSettings.getInt("lvl", 0);
                 int oldHp = notifSettings.getInt("hp", 0);
 
                 ConnectivityManager connMgr = (ConnectivityManager)
@@ -46,70 +45,68 @@ public class NotificationService extends IntentService {
                     String fullUrl = url + "action.php?a=get&id=" + nickname;
                     Request req = new Request(fullUrl, this);
                     if (req.getResult().containsKey("success")) {
-                        // If we were able to retrieve the values, we refresh the textviews
+                        // If we were able to retrieve the values
                         if (req.getValue("success").equals("true")) {
+
                             int hpValue = Integer.valueOf(req.getValue("hp"));
-                            if(hpValue != oldHp) {
+                            if (hpValue != oldHp) {
                                 SharedPreferences.Editor editor = notifSettings.edit();
                                 editor.putInt("hp", hpValue);
                                 editor.apply();
 
                                 if (hpValue <= 0) {
-                                    NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                                            .setSmallIcon(R.mipmap.ic_launcher)
-                                            .setContentTitle(getResources().getString(R.string.app_name))
-                                            .setContentText("You died : "+req.getValue("hp")+"/"+req.getValue("maxhp"));
-                                    builder.setAutoCancel(true);
 
-                                    Intent resultIntent = new Intent(this, CharacterSheetActivity.class);
-                                    resultIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                                    sendNotification(NOTIF_DEATH,
+                                            getResources().getString(R.string.app_name),
+                                            "You died : "+req.getValue("hp")+"/"+req.getValue("maxhp"),
+                                            CharacterSheetActivity.class);
 
-                                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-                                    stackBuilder.addParentStack(CharacterSheetActivity.class);
-                                    stackBuilder.addNextIntent(resultIntent);
-
-                                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                                            0, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                                    builder.setContentIntent(resultPendingIntent);
-                                    NotificationManager notifManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                                    notifManager.notify(NOTIF_DEATH, builder.build());
                                 }
                             }
 
                             int lvlValue = Integer.valueOf(req.getValue("lvl"));
-                            if(lvlValue > oldLvl) {
+                            if(lvlValue != oldLvl) {
                                 SharedPreferences.Editor editor = notifSettings.edit();
                                 editor.putInt("lvl", lvlValue);
                                 editor.apply();
 
-                                NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                                        .setSmallIcon(R.mipmap.ic_launcher)
-                                        .setContentTitle(getResources().getString(R.string.app_name))
-                                        .setContentText("You leveled up : lvl. "+req.getValue("lvl"));
-                                builder.setAutoCancel(true);
-
-                                Intent resultIntent = new Intent(this, CharacterSheetActivity.class);
-                                resultIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
-                                TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-                                stackBuilder.addParentStack(CharacterSheetActivity.class);
-                                stackBuilder.addNextIntent(resultIntent);
-
-                                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                                        0, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                                builder.setContentIntent(resultPendingIntent);
-                                NotificationManager notifManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                                notifManager.notify(NOTIF_LEVEL_UP, builder.build());
+                                if(lvlValue > oldLvl) {
+                                    sendNotification(NOTIF_LEVEL_UP,
+                                            getResources().getString(R.string.app_name),
+                                            "You leveled up : lvl. "+req.getValue("lvl"),
+                                            CharacterSheetActivity.class);
+                                }
                             }
                         }
                     }
                 }
                 Thread.sleep(30000);
+                allowNotif = notifSettings.getBoolean("allow", true);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    void sendNotification(int id, String title, String content, Class intentClass) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.app_icon)
+                .setContentTitle(title)
+                .setContentText(content);
+        builder.setAutoCancel(true);
+
+        Intent resultIntent = new Intent(this, intentClass);
+        resultIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(intentClass);
+        stackBuilder.addNextIntent(resultIntent);
+
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+                0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        builder.setContentIntent(resultPendingIntent);
+        NotificationManager notifManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notifManager.notify(id, builder.build());
     }
 }

@@ -18,7 +18,6 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Map;
 
 public class OptionsActivity extends DrawerActivity {
 
@@ -148,6 +147,13 @@ public class OptionsActivity extends DrawerActivity {
                 SharedPreferences.Editor editor = notifSettings.edit();
                 editor.putBoolean("allow", isChecked);
                 editor.apply();
+
+                if(isChecked) {
+                    Intent notifIntent = new Intent(getApplicationContext(), NotificationService.class);
+                    notifIntent.addCategory(NotificationService.TAG);
+                    stopService(notifIntent);
+                    startService(notifIntent);
+                }
             }
         });
 
@@ -183,8 +189,9 @@ public class OptionsActivity extends DrawerActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.activity_options, array);
         langSelect.setSelection(adapter.getPosition(language));
 
+        // Checks or not the notification option according to the saved preference
         SharedPreferences notifSettings = getSharedPreferences("notifications", Context.MODE_PRIVATE);
-        ((CheckBox) findViewById(R.id.allowNotifCheck)).setChecked(notifSettings.getBoolean("allow", true));
+        allowNotif.setChecked(notifSettings.getBoolean("allow", true));
     }
 
     @Override
@@ -204,7 +211,6 @@ public class OptionsActivity extends DrawerActivity {
                 break;
             case 2:
                 super.updateLocale();
-                SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
                 mDrawerLayout.closeDrawers();
                 break;
             default:
