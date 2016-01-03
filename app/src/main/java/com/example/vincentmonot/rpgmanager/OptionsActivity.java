@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -23,22 +25,26 @@ public class OptionsActivity extends DrawerActivity {
     private static final String TAG = "OptionsActivity";
     Button testCon, acceptNick, loadLocale;
     Spinner langSelect;
+    CheckBox allowNotif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
+        // Initializes the button to test the connection to the server
         testCon = (Button) findViewById(R.id.buttonCon);
         testCon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Gets the URL
                 String urlString = ((EditText) findViewById(R.id.editTextURL)).getText().toString();
 
                 if (!(urlString.startsWith("http://") || urlString.startsWith("https://"))) {
                     urlString = "http://" + urlString;
                 }
 
+                // Tries to connect
                 try {
                     URL url = new URL(urlString);
                     HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
@@ -68,10 +74,12 @@ public class OptionsActivity extends DrawerActivity {
             }
         });
 
+        // Button to change the user's nickname
         acceptNick = (Button) findViewById(R.id.ok_button);
         acceptNick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Changes the user's nickname in the preferences
                 String nickname = ((EditText) findViewById(R.id.editTextNick)).getText().toString();
                 SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = settings.edit();
@@ -85,10 +93,12 @@ public class OptionsActivity extends DrawerActivity {
             }
         });
 
+        // Button to change the language
         loadLocale = (Button) findViewById(R.id.buttonLocale);
         loadLocale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Restart the activity
                 Intent intent = OptionsActivity.this.getIntent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 OptionsActivity.this.finish();
@@ -96,6 +106,7 @@ public class OptionsActivity extends DrawerActivity {
             }
         });
 
+        // Spinner of languages
         langSelect = (Spinner) findViewById(R.id.spinnerLanguages);
         langSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -129,6 +140,17 @@ public class OptionsActivity extends DrawerActivity {
             }
         });
 
+        allowNotif = (CheckBox) findViewById(R.id.allowNotifCheck);
+        allowNotif.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences notifSettings = getSharedPreferences("notifications", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = notifSettings.edit();
+                editor.putBoolean("allow", isChecked);
+                editor.apply();
+            }
+        });
+
     }
 
     @Override
@@ -137,15 +159,15 @@ public class OptionsActivity extends DrawerActivity {
 
         SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
 
-        // Put the default URL in the EditText
+        // Put the saved URL in the EditText
         String url = settings.getString("url", "http://uinelj.eu/misc/rpgm/");
         ((EditText) findViewById(R.id.editTextURL)).setText(url);
 
-        // Put the default nickname in the EditText
+        // Put the saved nickname in the EditText
         String nickname = settings.getString("nickname", "foo");
         ((EditText) findViewById(R.id.editTextNick)).setText(nickname);
 
-        // Put the selected locale as default on spinner
+        // Put the saved language as default on spinner
         String lang = settings.getString("locale", "en_US");
         String language;
         switch(lang) {
@@ -160,9 +182,13 @@ public class OptionsActivity extends DrawerActivity {
         String[] array = {"English", "Français"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.activity_options, array);
         langSelect.setSelection(adapter.getPosition(language));
+
+        SharedPreferences notifSettings = getSharedPreferences("notifications", Context.MODE_PRIVATE);
+        ((CheckBox) findViewById(R.id.allowNotifCheck)).setChecked(notifSettings.getBoolean("allow", true));
     }
 
     @Override
+    // Used when clicking a menu item
     protected void onItemSelection(AdapterView<?> parent, View view, int position, long id) {
         Intent intent;
         switch (position) {
@@ -179,10 +205,6 @@ public class OptionsActivity extends DrawerActivity {
             case 2:
                 super.updateLocale();
                 SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
-                Map<String, ?> keys = settings.getAll();
-                for(Map.Entry<String, ?> entry : keys.entrySet()) {
-                    Log.d(TAG, "Values = "+entry.getKey()+":"+entry.getValue());
-                }
                 mDrawerLayout.closeDrawers();
                 break;
             default:

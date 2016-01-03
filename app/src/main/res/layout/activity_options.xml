@@ -88,4 +88,12 @@
 
     </LinearLayout>
 
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/allowNotifCheck"
+        android:layout_below="@+id/languageLayout"
+        android:layout_marginTop="10dp"
+        android:text="@string/allow_notif" />
+
 </RelativeLayout>

@@ -32,6 +32,7 @@ public class DiceActivity extends DrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dice);
 
+        // Initialize the sensor manager (to detect the shaking of the device)
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorListener = new ShakeEventListener();
 
@@ -48,16 +49,18 @@ public class DiceActivity extends DrawerActivity {
             }
         });
 
+        // Initialize the dice image
         diceImage = (ImageButton) findViewById(R.id.diceImage);
         diceImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("DiceActivity", "Click on imageButton");
+                // When clicking the dice, a choice of dices appears
                 AlertDialog.Builder builder = new AlertDialog.Builder(DiceActivity.this);
                 builder.setTitle(getResources().getString(R.string.nb_faces))
                     .setItems(R.array.dices_array, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            // When selecting a new dice, it updates the image and the max value for the random number
                             switch(which) {
                                 case 0:
                                     DiceActivity.this.diceValue = 4;
@@ -109,11 +112,12 @@ public class DiceActivity extends DrawerActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // Start the detection of shaking
         mSensorManager.registerListener(mSensorListener,
                 mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_UI);
 
-        // Displays the last dice clicked
+        // Displays the last dice clicked (used when orientation changes among other possibilities)
         SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         diceValue = settings.getInt("diceFaces", 20);
 
@@ -160,11 +164,13 @@ public class DiceActivity extends DrawerActivity {
 
     @Override
     protected void onPause() {
+        // We stop registering the movement
         mSensorManager.unregisterListener(mSensorListener);
         super.onPause();
     }
 
     @Override
+    // Used when clicking a menu item
     protected void onItemSelection(AdapterView<?> parent, View view, int position, long id) {
         Intent intent;
         switch (position) {

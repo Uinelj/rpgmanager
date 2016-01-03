@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.vincentmonot.rpgmanager">
+<manifest package="com.example.vincentmonot.rpgmanager"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -12,19 +12,26 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CharacterSheetActivity"
-            android:launchMode="singleTask" >
+        <activity
+            android:name=".CharacterSheetActivity"
+            android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".DrawerActivity" />
-        <activity android:name=".DiceActivity"
-                  android:launchMode="singleTask" />
-        <activity android:name=".OptionsActivity"
-                  android:launchMode="singleTask" />
+        <activity android:name=".DrawerActivity"/>
+        <activity
+            android:name=".DiceActivity"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".OptionsActivity"
+            android:launchMode="singleTask"/>
+
+        <service
+            android:name=".NotificationService"
+            android:exported="false"/>
     </application>
 
 </manifest>

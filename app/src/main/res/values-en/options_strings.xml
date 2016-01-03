@@ -6,6 +6,7 @@
     <string name="image_button_desc">Change the dice size</string>
     <string name="select_lang">Language</string>
     <string name="load_locale">Load</string>
+    <string name="allow_notif">Notifications</string>
     <string name="toast_new_nick">New nickname</string>
     <string name="toast_r_dest">Reachable destination</string>
     <string name="toast_unr_dest">Unreachable destination</string>

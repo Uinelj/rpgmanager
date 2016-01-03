@@ -6,6 +6,7 @@
     <string name="image_button_desc">Changer la taille du dé</string>
     <string name="select_lang">Langue</string>
     <string name="load_locale">Charger</string>
+    <string name="allow_notif">Notifications</string>
     <string name="toast_new_nick">Nouveau pseudonyme</string>
     <string name="toast_r_dest">Destination atteignable</string>
     <string name="toast_unr_dest">Destination non atteignable</string>

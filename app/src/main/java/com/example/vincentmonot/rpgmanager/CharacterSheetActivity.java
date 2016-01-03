@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -39,6 +40,9 @@ public class CharacterSheetActivity extends DrawerActivity {
         StrictMode.setThreadPolicy(policy);
 
         refreshData();
+
+        Intent notifIntent = new Intent(this, NotificationService.class);
+        startService(notifIntent);
     }
 
     @Override
@@ -57,8 +61,10 @@ public class CharacterSheetActivity extends DrawerActivity {
             startActivity(intent);
         }
 
+        // We refresh the data
         refreshData();
 
+        // Make the layouts clickable to edit hte values
         RelativeLayout layoutHealth = (RelativeLayout) findViewById(R.id.layoutHealth);
         layoutHealth.setOnClickListener(new LayoutNumberPicker(
                 r.getString(R.string.health_picker),
@@ -95,6 +101,7 @@ public class CharacterSheetActivity extends DrawerActivity {
     }
 
     @Override
+    // Used when clicking a menu item
     protected void onItemSelection(AdapterView<?> parent, View view, int position, long id) {
         Intent intent;
         switch (position) {
@@ -117,21 +124,32 @@ public class CharacterSheetActivity extends DrawerActivity {
         }
     }
 
+    // Refresh the values of the app
     private void refreshData() {
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
+        // We get the saved url, or a default one
         SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         url = settings.getString("url", "http://uinelj.eu/misc/rpgm/");
 
+        // We update the values
         if (networkInfo != null && networkInfo.isConnected()) {
             String nickname = settings.getString("nickname", "foo");
             String fullUrl = url+"action.php?a=get&id="+nickname;
             Log.d(TAG, "Retrieving data from: "+fullUrl);
             Request req = new Request(fullUrl, this);
             if(req.getResult().containsKey("success")) {
+                // If we were able to retrieve the values, we refresh the textviews
                 if (req.getValue("success").equals("true")) {
+
+                    SharedPreferences notifSettings = getSharedPreferences("notifications", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = notifSettings.edit();
+                    editor.putInt("hp", Integer.valueOf(req.getValue("hp")));
+                    editor.putInt("lvl", Integer.valueOf(req.getValue("lvl")));
+                    editor.apply();
+
                     ((TextView) findViewById(R.id.textNickname)).setText(req.getValue("name"));
                     ((TextView) findViewById(R.id.textAlignment)).setText(req.getValue("align"));
                     ((TextView) findViewById(R.id.textRace)).setText(req.getValue("race"));
@@ -166,7 +184,9 @@ public class CharacterSheetActivity extends DrawerActivity {
                     pickerValues.put("wis", Integer.valueOf(req.getValue("wis")));
                     ((TextView) findViewById(R.id.textCharisma)).setText(req.getValue("cha"));
                     pickerValues.put("cha", Integer.valueOf(req.getValue("cha")));
-                } else {
+                }
+                // If it didn't work, we put the default values
+                else {
                     Resources r = getResources();
                     ((TextView) findViewById(R.id.textNickname)).setText(r.getString(R.string.textNickname));
                     ((TextView) findViewById(R.id.textAlignment)).setText(r.getString(R.string.textAlignment));
@@ -193,7 +213,6 @@ public class CharacterSheetActivity extends DrawerActivity {
                     pickerValues.put("cha", Integer.valueOf(r.getString(R.string.base_value)));
 
                     String message = req.getValue("msg") + " (" + req.getValue("id") + ")";
-                    Log.d(TAG, message);
                     Toast.makeText(CharacterSheetActivity.this, message, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -207,6 +226,7 @@ public class CharacterSheetActivity extends DrawerActivity {
         }
     }
 
+    // Class which responds to clicks on layouts (to update their values)
     private class LayoutNumberPicker implements View.OnClickListener {
         int idTextView = 0;
         String title = "", field = "";
@@ -223,6 +243,7 @@ public class CharacterSheetActivity extends DrawerActivity {
 
         @Override
         public void onClick(View v) {
+            // We create a set of values to display in the NumberPicker
             String values[] = new String[100];
             for(int i=0 ; i<100 ; i++) {
                 if(i>=90) {
@@ -232,6 +253,7 @@ public class CharacterSheetActivity extends DrawerActivity {
                     values[i] = Integer.toString(99 - i);
                 }
             }
+            // We set up the NumberPicker and its layout
             final NumberPicker numPicker = new NumberPicker(CharacterSheetActivity.this);
             numPicker.setMinValue(0);
             numPicker.setMaxValue(99);
@@ -250,6 +272,8 @@ public class CharacterSheetActivity extends DrawerActivity {
             pickerLayout.setLayoutParams(params);
 
             NumberPicker numPicker2 = new NumberPicker(CharacterSheetActivity.this);
+            // If we have multiple NumberPickers to display at the same time (for health and level/xp),
+            // we set up another NumberPicker
             switch (split[0]) {
                 case "lvl":
                     String values2[] = new String[1000];
@@ -295,6 +319,7 @@ public class CharacterSheetActivity extends DrawerActivity {
                     break;
             }
 
+            // We build the alert dialog to display the number picker
             AlertDialog.Builder builder = new AlertDialog.Builder(CharacterSheetActivity.this);
             final NumberPicker finalNumPicker2 = numPicker2;
             builder.setTitle(title)
@@ -303,11 +328,14 @@ public class CharacterSheetActivity extends DrawerActivity {
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    // Checking if there were multiple number pickers at the same time
                                     switch (split[0]) {
                                         case "lvl":
+                                            // Updating the value online
                                             updateValue(split[0], String.valueOf(99 - numPicker.getValue()));
                                             updateValue(split[1], String.valueOf(999 - finalNumPicker2.getValue()));
 
+                                            // Update the display of the value
                                             String level = pickerValues.get("lvl") + "(" + pickerValues.get("xp") + ")";
                                             ((TextView) findViewById(R.id.textLevel)).setText(level);
                                             break;
@@ -342,16 +370,21 @@ public class CharacterSheetActivity extends DrawerActivity {
             dialog.show();
         }
 
+        // Update value online
         private void updateValue(String field, String value) {
+            // Updates the value in the HashMap
             pickerValues.put(field, Integer.valueOf(value));
 
+            // Get the preferences
             SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
             String urlSettings = settings.getString("url", "http://uinelj.eu/misc/rpgm/");
             String playerId = settings.getString("nickname", "foo");
 
+            // Create the url
             String fullUrl = urlSettings + "action.php?a=update&id=" + playerId
                     + "&field=" + field + "&value=" + value;
 
+            // Make the request online
             Request req = new Request(fullUrl, CharacterSheetActivity.this);
             if(req.getResult().containsKey("success")) {
                 if(req.getValue("success").equals("true")) {

@@ -41,39 +41,22 @@ public class DrawerActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.parseColor("#B79A00"));
         }
-        /*
-        switch(this.getClass().getSimpleName()) {
-            case "CharacterSheetActivity":
-                title = getResources().getStringArray(R.array.menu_items)[0];
-                break;
-            case "DiceActivity":
-                title = getResources().getStringArray(R.array.menu_items)[1];
-                break;
-            case "OptionsActivity":
-                title = getResources().getStringArray(R.array.menu_items)[2];
-                break;
-            default:
-                title = "RPG Manager";
-                break;
-        }
-        */
+
         if(getSupportActionBar() != null) {
-            //getSupportActionBar().setTitle(title);
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#E5C100")));
         }
-        updateLocale();
-
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume is called");
         mDrawerLayout.closeDrawers();
+
+        // Updates the language
         updateLocale();
 
-
+        // Updates the title
         navOptions = getResources().getStringArray(R.array.menu_items);
 
         mDrawerList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, navOptions));
@@ -97,7 +80,7 @@ public class DrawerActivity extends AppCompatActivity {
         }
     }
 
-
+    // For the drawer menu
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -116,6 +99,7 @@ public class DrawerActivity extends AppCompatActivity {
     }
 
     @Override
+    // Sets up the drawer menu
     public void setContentView(final int layoutResID) {
         DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_drawer, (ViewGroup) getCurrentFocus());
         RelativeLayout actContent = (RelativeLayout) fullLayout.findViewById(R.id.drawer_content);
@@ -136,6 +120,7 @@ public class DrawerActivity extends AppCompatActivity {
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
             @Override
+            // Moves the activity to the right when opening the menu
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 float moveFactor = DrawerActivity.this.mDrawerList.getWidth() * slideOffset;
                 RelativeLayout contentLayout = (RelativeLayout) findViewById(R.id.content_layout);
@@ -159,18 +144,20 @@ public class DrawerActivity extends AppCompatActivity {
         Toast.makeText(DrawerActivity.this, navOptions[position], Toast.LENGTH_SHORT).show();
     }
 
+    // Updates the language
     protected void updateLocale() {
+        // Gettting the settings
         SharedPreferences settings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         String localePref = settings.getString("locale", "en_US");
         String[] split = localePref.split("_");
-        Log.d(TAG, "SHARED_PREFERENCES Locale=" + localePref);
 
+        // Updates the application's locale
         Locale locale = new Locale(split[0]);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
-        getApplicationContext().getResources().updateConfiguration(config, getApplicationContext().getResources().getDisplayMetrics());
-
-        Log.d(TAG, "Changed Locale=" + getResources().getConfiguration().locale);
+        getApplicationContext().getResources().updateConfiguration(
+                config,
+                getApplicationContext().getResources().getDisplayMetrics());
     }
 }

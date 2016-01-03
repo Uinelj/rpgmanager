@@ -35,10 +35,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e5410925-22b8-45c1-bc11-6121fa9c7ce3" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/NotificationService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/CharacterSheetActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/CharacterSheetActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-en/specs_strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-en/specs_strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-fr/specs_strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-fr/specs_strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DiceActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DiceActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DrawerActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DrawerActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/OptionsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/OptionsActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_options.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_options.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-en/options_strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-en/options_strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-fr/options_strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-fr/options_strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RPGmanager.iws" />
@@ -67,54 +72,83 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CharacterSheetActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/CharacterSheetActivity.java">
+      <file leaf-file-name="activity_options.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_options.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75043935">
-              <caret line="295" column="13" selection-start-line="295" selection-start-column="13" selection-end-line="295" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.8111111">
+              <caret line="96" column="43" selection-start-line="96" selection-start-column="43" selection-end-line="96" selection-end-column="43" />
+              <folding>
+                <element signature="e#1067#1086#0" expanded="true" />
+                <element signature="e#1305#1323#0" expanded="true" />
+                <element signature="e#1884#1904#0" expanded="true" />
+                <element signature="e#2123#2142#0" expanded="true" />
+                <element signature="e#2665#2686#0" expanded="true" />
+                <element signature="e#3205#3226#0" expanded="true" />
+                <element signature="e#3589#3610#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="options_strings.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values-en/options_strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="8" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="options_strings.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values-fr/options_strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="53" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NotificationService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/NotificationService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="80" column="41" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1556#1583#0" expanded="true" />
-                <element signature="e#2010#2045#0" expanded="true" />
-                <element signature="e#2263#2297#0" expanded="true" />
-                <element signature="e#2513#2550#0" expanded="true" />
-                <element signature="e#2769#2807#0" expanded="true" />
-                <element signature="e#3036#3077#0" expanded="true" />
-                <element signature="e#3309#3350#0" expanded="true" />
-                <element signature="e#3566#3601#0" expanded="true" />
-                <element signature="e#3815#3852#0" expanded="true" />
-                <element signature="e#8199#8233#0" expanded="true" />
-                <element signature="e#8310#8345#0" expanded="true" />
-                <element signature="e#8417#8447#0" expanded="true" />
-                <element signature="e#8520#8551#0" expanded="true" />
-                <element signature="e#8633#8665#0" expanded="true" />
-                <element signature="e#8742#8775#0" expanded="true" />
-                <element signature="e#8846#8876#0" expanded="true" />
-                <element signature="e#8951#8983#0" expanded="true" />
-                <element signature="e#9057#9089#0" expanded="true" />
-                <element signature="e#9165#9197#0" expanded="true" />
-                <element signature="e#9260#9292#0" expanded="true" />
-                <element signature="e#9370#9402#0" expanded="true" />
-                <element signature="e#9465#9497#0" expanded="true" />
-                <element signature="e#9578#9610#0" expanded="true" />
-                <element signature="e#9673#9705#0" expanded="true" />
-                <element signature="e#9786#9818#0" expanded="true" />
-                <element signature="e#9883#9915#0" expanded="true" />
-                <element signature="e#9990#10022#0" expanded="true" />
-                <element signature="e#10085#10117#0" expanded="true" />
-                <element signature="e#10194#10226#0" expanded="true" />
-                <element signature="e#10289#10321#0" expanded="true" />
-                <element signature="e#10726#10748#0" expanded="true" />
-                <element signature="e#10914#10939#0" expanded="true" />
-                <element signature="e#15218#15262#0" expanded="true" />
-                <element signature="e#15292#17422#0" expanded="true" />
-                <element signature="e#17421#17422#0" expanded="true" />
-                <element signature="e#17463#17511#0" expanded="true" />
-                <element signature="e#17541#17828#0" expanded="true" />
-                <element signature="e#17827#17828#0" expanded="true" />
-                <element signature="e#18732#18758#0" expanded="true" />
-                <element signature="e#18992#19019#0" expanded="true" />
+                <element signature="e#637#638#0" expanded="true" />
+                <element signature="e#681#682#0" expanded="true" />
+                <element signature="e#2786#2829#0" expanded="true" />
+                <element signature="e#4632#4675#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OptionsActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/OptionsActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="147" column="68" selection-start-line="147" selection-start-column="68" selection-end-line="147" selection-end-column="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5716#6167#0" expanded="true" />
+                <element signature="e#6166#6167#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1714,23 +1748,24 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/CheckConnection.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-en/arrays.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-fr/arrays.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/Request.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_options.xml" />
         <option value="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-en/values-en.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-en/options_strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-fr/options_strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-en/dice_strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-fr/dice_strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DiceActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/OptionsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DrawerActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-en/specs_strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-fr/specs_strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DiceActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DrawerActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/CharacterSheetActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-en/options_strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-fr/options_strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_options.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/OptionsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/NotificationService.java" />
       </list>
     </option>
   </component>
@@ -1832,6 +1867,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="specs_strings.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RPGmanager" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="options_strings.xml" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2281,7 +2338,13 @@
       <option name="project" value="LOCAL" />
       <updated>1451750941082</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Update possible de la vie et lvl/xp">
+      <created>1451823990937</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1451823990937</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2361,7 +2424,8 @@
     <MESSAGE value="Chgt pseudo + langues Toasts" />
     <MESSAGE value="On peut changer les valeurs des persos (str, dex, ...)" />
     <MESSAGE value="On peut update les valeurs des persos en ligne + bugfixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="On peut update les valeurs des persos en ligne + bugfixes" />
+    <MESSAGE value="Update possible de la vie et lvl/xp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update possible de la vie et lvl/xp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2370,26 +2434,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="34" selection-start-line="72" selection-start-column="34" selection-end-line="72" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DrawerActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="94" column="55" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
           <folding>
-            <element signature="e#465#483#0" expanded="true" />
+            <element signature="e#469#487#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2400,46 +2450,6 @@
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1556#1583#0" expanded="true" />
-            <element signature="e#2010#2045#0" expanded="true" />
-            <element signature="e#2263#2297#0" expanded="true" />
-            <element signature="e#2513#2550#0" expanded="true" />
-            <element signature="e#2769#2807#0" expanded="true" />
-            <element signature="e#3036#3077#0" expanded="true" />
-            <element signature="e#3309#3350#0" expanded="true" />
-            <element signature="e#3566#3601#0" expanded="true" />
-            <element signature="e#3815#3852#0" expanded="true" />
-            <element signature="e#8199#8233#0" expanded="true" />
-            <element signature="e#8310#8345#0" expanded="true" />
-            <element signature="e#8417#8447#0" expanded="true" />
-            <element signature="e#8520#8551#0" expanded="true" />
-            <element signature="e#8633#8665#0" expanded="true" />
-            <element signature="e#8742#8775#0" expanded="true" />
-            <element signature="e#8846#8876#0" expanded="true" />
-            <element signature="e#8951#8983#0" expanded="true" />
-            <element signature="e#9057#9089#0" expanded="true" />
-            <element signature="e#9165#9197#0" expanded="true" />
-            <element signature="e#9260#9292#0" expanded="true" />
-            <element signature="e#9370#9402#0" expanded="true" />
-            <element signature="e#9465#9497#0" expanded="true" />
-            <element signature="e#9578#9610#0" expanded="true" />
-            <element signature="e#9673#9705#0" expanded="true" />
-            <element signature="e#9786#9818#0" expanded="true" />
-            <element signature="e#9883#9915#0" expanded="true" />
-            <element signature="e#9990#10022#0" expanded="true" />
-            <element signature="e#10085#10117#0" expanded="true" />
-            <element signature="e#10194#10226#0" expanded="true" />
-            <element signature="e#10289#10321#0" expanded="true" />
-            <element signature="e#10726#10748#0" expanded="true" />
-            <element signature="e#10914#10939#0" expanded="true" />
-            <element signature="e#15218#15262#0" expanded="true" />
-            <element signature="e#15292#17422#0" expanded="true" />
-            <element signature="e#17421#17422#0" expanded="true" />
-            <element signature="e#17463#17511#0" expanded="true" />
-            <element signature="e#17541#17828#0" expanded="true" />
-            <element signature="e#17827#17828#0" expanded="true" />
-            <element signature="e#18732#18758#0" expanded="true" />
-            <element signature="e#18992#19019#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2481,7 +2491,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#465#483#0" expanded="true" />
+            <element signature="e#469#487#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2492,46 +2502,6 @@
           <caret line="27" column="71" selection-start-line="27" selection-start-column="71" selection-end-line="27" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1556#1583#0" expanded="true" />
-            <element signature="e#2010#2045#0" expanded="true" />
-            <element signature="e#2263#2297#0" expanded="true" />
-            <element signature="e#2513#2550#0" expanded="true" />
-            <element signature="e#2769#2807#0" expanded="true" />
-            <element signature="e#3036#3077#0" expanded="true" />
-            <element signature="e#3309#3350#0" expanded="true" />
-            <element signature="e#3566#3601#0" expanded="true" />
-            <element signature="e#3815#3852#0" expanded="true" />
-            <element signature="e#8199#8233#0" expanded="true" />
-            <element signature="e#8310#8345#0" expanded="true" />
-            <element signature="e#8417#8447#0" expanded="true" />
-            <element signature="e#8520#8551#0" expanded="true" />
-            <element signature="e#8633#8665#0" expanded="true" />
-            <element signature="e#8742#8775#0" expanded="true" />
-            <element signature="e#8846#8876#0" expanded="true" />
-            <element signature="e#8951#8983#0" expanded="true" />
-            <element signature="e#9057#9089#0" expanded="true" />
-            <element signature="e#9165#9197#0" expanded="true" />
-            <element signature="e#9260#9292#0" expanded="true" />
-            <element signature="e#9370#9402#0" expanded="true" />
-            <element signature="e#9465#9497#0" expanded="true" />
-            <element signature="e#9578#9610#0" expanded="true" />
-            <element signature="e#9673#9705#0" expanded="true" />
-            <element signature="e#9786#9818#0" expanded="true" />
-            <element signature="e#9883#9915#0" expanded="true" />
-            <element signature="e#9990#10022#0" expanded="true" />
-            <element signature="e#10085#10117#0" expanded="true" />
-            <element signature="e#10194#10226#0" expanded="true" />
-            <element signature="e#10289#10321#0" expanded="true" />
-            <element signature="e#10726#10748#0" expanded="true" />
-            <element signature="e#10914#10939#0" expanded="true" />
-            <element signature="e#15218#15262#0" expanded="true" />
-            <element signature="e#15292#17422#0" expanded="true" />
-            <element signature="e#17421#17422#0" expanded="true" />
-            <element signature="e#17463#17511#0" expanded="true" />
-            <element signature="e#17541#17828#0" expanded="true" />
-            <element signature="e#17827#17828#0" expanded="true" />
-            <element signature="e#18732#18758#0" expanded="true" />
-            <element signature="e#18992#19019#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2578,46 +2548,6 @@
           <caret line="27" column="71" selection-start-line="27" selection-start-column="71" selection-end-line="27" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1556#1583#0" expanded="true" />
-            <element signature="e#2010#2045#0" expanded="true" />
-            <element signature="e#2263#2297#0" expanded="true" />
-            <element signature="e#2513#2550#0" expanded="true" />
-            <element signature="e#2769#2807#0" expanded="true" />
-            <element signature="e#3036#3077#0" expanded="true" />
-            <element signature="e#3309#3350#0" expanded="true" />
-            <element signature="e#3566#3601#0" expanded="true" />
-            <element signature="e#3815#3852#0" expanded="true" />
-            <element signature="e#8199#8233#0" expanded="true" />
-            <element signature="e#8310#8345#0" expanded="true" />
-            <element signature="e#8417#8447#0" expanded="true" />
-            <element signature="e#8520#8551#0" expanded="true" />
-            <element signature="e#8633#8665#0" expanded="true" />
-            <element signature="e#8742#8775#0" expanded="true" />
-            <element signature="e#8846#8876#0" expanded="true" />
-            <element signature="e#8951#8983#0" expanded="true" />
-            <element signature="e#9057#9089#0" expanded="true" />
-            <element signature="e#9165#9197#0" expanded="true" />
-            <element signature="e#9260#9292#0" expanded="true" />
-            <element signature="e#9370#9402#0" expanded="true" />
-            <element signature="e#9465#9497#0" expanded="true" />
-            <element signature="e#9578#9610#0" expanded="true" />
-            <element signature="e#9673#9705#0" expanded="true" />
-            <element signature="e#9786#9818#0" expanded="true" />
-            <element signature="e#9883#9915#0" expanded="true" />
-            <element signature="e#9990#10022#0" expanded="true" />
-            <element signature="e#10085#10117#0" expanded="true" />
-            <element signature="e#10194#10226#0" expanded="true" />
-            <element signature="e#10289#10321#0" expanded="true" />
-            <element signature="e#10726#10748#0" expanded="true" />
-            <element signature="e#10914#10939#0" expanded="true" />
-            <element signature="e#15218#15262#0" expanded="true" />
-            <element signature="e#15292#17422#0" expanded="true" />
-            <element signature="e#17421#17422#0" expanded="true" />
-            <element signature="e#17463#17511#0" expanded="true" />
-            <element signature="e#17541#17828#0" expanded="true" />
-            <element signature="e#17827#17828#0" expanded="true" />
-            <element signature="e#18732#18758#0" expanded="true" />
-            <element signature="e#18992#19019#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2694,13 +2624,6 @@
       </provider>
       <provider selected="true" editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/ShakeEventListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59753954">
-          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
-        </state>
       </provider>
     </entry>
     <entry file="file://C:/Android/sdk-papa/sources/android-23/java/net/URLConnection.java">
@@ -2788,16 +2711,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-          <folding>
-            <element signature="e#465#483#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2822,14 +2735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.031365313">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-en/values-en.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5430108">
@@ -2837,36 +2742,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-fr/options_strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-en/options_strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Android/sdk-papa/platforms/android-23/android.jar!/android/content/ContentValues.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-          <folding>
-            <element signature="e#660#676#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2878,53 +2757,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DiceActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.5413003">
-          <caret line="179" column="19" selection-start-line="179" selection-start-column="19" selection-end-line="179" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1755#4780#0" expanded="true" />
-            <element signature="e#2034#2077#0" expanded="true" />
-            <element signature="e#2130#4668#0" expanded="true" />
-            <element signature="e#4667#4668#0" expanded="true" />
-            <element signature="e#4779#4780#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/OptionsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13356766">
-          <caret line="168" column="19" selection-start-line="168" selection-start-column="19" selection-end-line="168" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values-fr/dice_strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.029876977">
           <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DrawerActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5237258">
-          <caret line="118" column="55" selection-start-line="118" selection-start-column="55" selection-end-line="118" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_options.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-port/specs.xml">
@@ -2961,54 +2799,137 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/CharacterSheetActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DiceActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75043935">
-          <caret line="295" column="13" selection-start-line="295" selection-start-column="13" selection-end-line="295" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.19332162">
+          <caret line="172" column="37" selection-start-line="172" selection-start-column="37" selection-end-line="172" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1556#1583#0" expanded="true" />
-            <element signature="e#2010#2045#0" expanded="true" />
-            <element signature="e#2263#2297#0" expanded="true" />
-            <element signature="e#2513#2550#0" expanded="true" />
-            <element signature="e#2769#2807#0" expanded="true" />
-            <element signature="e#3036#3077#0" expanded="true" />
-            <element signature="e#3309#3350#0" expanded="true" />
-            <element signature="e#3566#3601#0" expanded="true" />
-            <element signature="e#3815#3852#0" expanded="true" />
-            <element signature="e#8199#8233#0" expanded="true" />
-            <element signature="e#8310#8345#0" expanded="true" />
-            <element signature="e#8417#8447#0" expanded="true" />
-            <element signature="e#8520#8551#0" expanded="true" />
-            <element signature="e#8633#8665#0" expanded="true" />
-            <element signature="e#8742#8775#0" expanded="true" />
-            <element signature="e#8846#8876#0" expanded="true" />
-            <element signature="e#8951#8983#0" expanded="true" />
-            <element signature="e#9057#9089#0" expanded="true" />
-            <element signature="e#9165#9197#0" expanded="true" />
-            <element signature="e#9260#9292#0" expanded="true" />
-            <element signature="e#9370#9402#0" expanded="true" />
-            <element signature="e#9465#9497#0" expanded="true" />
-            <element signature="e#9578#9610#0" expanded="true" />
-            <element signature="e#9673#9705#0" expanded="true" />
-            <element signature="e#9786#9818#0" expanded="true" />
-            <element signature="e#9883#9915#0" expanded="true" />
-            <element signature="e#9990#10022#0" expanded="true" />
-            <element signature="e#10085#10117#0" expanded="true" />
-            <element signature="e#10194#10226#0" expanded="true" />
-            <element signature="e#10289#10321#0" expanded="true" />
-            <element signature="e#10726#10748#0" expanded="true" />
-            <element signature="e#10914#10939#0" expanded="true" />
-            <element signature="e#15218#15262#0" expanded="true" />
-            <element signature="e#15292#17422#0" expanded="true" />
-            <element signature="e#17421#17422#0" expanded="true" />
-            <element signature="e#17463#17511#0" expanded="true" />
-            <element signature="e#17541#17828#0" expanded="true" />
-            <element signature="e#17827#17828#0" expanded="true" />
-            <element signature="e#18732#18758#0" expanded="true" />
-            <element signature="e#18992#19019#0" expanded="true" />
+            <element signature="e#1871#5021#0" expanded="true" />
+            <element signature="e#2156#2199#0" expanded="true" />
+            <element signature="e#2252#4909#0" expanded="true" />
+            <element signature="e#4908#4909#0" expanded="true" />
+            <element signature="e#5020#5021#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/ShakeEventListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8822496">
+          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23901582">
+          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+          <folding>
+            <element signature="e#660#676#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/DrawerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8664323">
+          <caret line="160" column="16" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="16" />
+          <folding>
+            <element signature="e#3745#4006#0" expanded="true" />
+            <element signature="e#4005#4006#0" expanded="true" />
+            <element signature="e#4081#4101#0" expanded="true" />
+            <element signature="e#4103#4124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6296296">
+          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-en/options_strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="8" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-fr/options_strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="53" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/CharacterSheetActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/NotificationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="80" column="41" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#637#638#0" expanded="true" />
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#2786#2829#0" expanded="true" />
+            <element signature="e#4632#4675#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/vincentmonot/rpgmanager/OptionsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="147" column="68" selection-start-line="147" selection-start-column="68" selection-end-line="147" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5716#6167#0" expanded="true" />
+            <element signature="e#6166#6167#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_options.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8111111">
+          <caret line="96" column="43" selection-start-line="96" selection-start-column="43" selection-end-line="96" selection-end-column="43" />
+          <folding>
+            <element signature="e#1067#1086#0" expanded="true" />
+            <element signature="e#1305#1323#0" expanded="true" />
+            <element signature="e#1884#1904#0" expanded="true" />
+            <element signature="e#2123#2142#0" expanded="true" />
+            <element signature="e#2665#2686#0" expanded="true" />
+            <element signature="e#3205#3226#0" expanded="true" />
+            <element signature="e#3589#3610#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>
