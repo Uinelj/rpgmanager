@@ -4,6 +4,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 
+/* This class comes from the user "peceps" at http://stackoverflow.com/questions/2317428/android-i-want-to-shake-it */
 public class ShakeEventListener implements SensorEventListener {
 
     /** Minimum movement force to consider. */
